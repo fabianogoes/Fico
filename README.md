@@ -1,5 +1,5 @@
 # Fico
-Financial control System   
+### Financial control System   
 ![Fico][4]
 
 License
