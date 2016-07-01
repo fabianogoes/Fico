@@ -1,6 +1,8 @@
 # Fico
 Financial control System
 
+![Fico][4]
+
 License
 -------
 [![MIT][0]][1]   
@@ -14,3 +16,4 @@ Open Source
 [1]: https://raw.githubusercontent.com/fabianogoes/Fico/master/LICENSE
 [2]: https://raw.githubusercontent.com/fabianogoes/Fico/master/src/main/resources/static/img/opensource-iniciative.png
 [3]: https://en.wikipedia.org/wiki/Open_Source_Initiative
+[4]: https://raw.githubusercontent.com/fabianogoes/Fico/master/src/main/resources/static/img/print-dashboard.png
