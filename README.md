@@ -10,7 +10,7 @@ Open Source
 -----------
 [![Open Source][2]][3]  
 
-[0]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/doc/mit-license.png
-[1]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/LICENSE
-[2]: https://raw.githubusercontent.com/fabianogoes/sigaula/master/doc/opensource-iniciative.png
+[0]: https://raw.githubusercontent.com/fabianogoes/Fico/master/src/main/resources/static/img/mit-license.png
+[1]: https://raw.githubusercontent.com/fabianogoes/Fico/master/LICENSE
+[2]: https://raw.githubusercontent.com/fabianogoes/Fico/master/src/main/resources/static/img/opensource-iniciative.png
 [3]: https://en.wikipedia.org/wiki/Open_Source_Initiative
