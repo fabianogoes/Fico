@@ -2,6 +2,23 @@
 ### Financial control System   
 ![Fico][4]
 
+Libraries
+---------
+* Java
+* SpringBoot
+* Spring IoC
+* Spring Data
+* JPA
+* Hibernate
+* HTML
+* Thymeleaf
+* MySQL
+* Maven
+* Twitter Bootstrap
+* Font-Awesome
+* JQuery
+* AngularJS
+
 License
 -------
 [![MIT][0]][1]   
