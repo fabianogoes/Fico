@@ -3,6 +3,30 @@
 	<head lang="pt-br">
     	<title th:text="#{system.name}">Fico</title>
     	<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block>  /*/-->
+    	<script>
+			$(function() {
+				$.datepicker.regional['pt-BR'] = {
+		                closeText: 'Fechar',
+		                prevText: '&#x3c;Anterior',
+		                nextText: 'Pr&oacute;ximo&#x3e;',
+		                currentText: 'Hoje',
+		                monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
+		                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
+		                'Jul','Ago','Set','Out','Nov','Dez'],
+		                dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
+		                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+		                dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+		                weekHeader: 'Sm',
+		                dateFormat: 'dd/mm/yy',
+		                firstDay: 0,
+		                isRTL: false,
+		                showMonthAfterYear: false,
+		                yearSuffix: ''};
+				$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+    			$( "#lancamentoDate" ).datepicker();
+			});
+		</script>
   	</head>
 <body>
 
@@ -19,7 +43,7 @@
   				<h1>
   					<i class="fa fa-money text-danger"></i>&nbsp;
   					<span>Contas a Pagar</span>&nbsp;
-  					<small>Gestão de Contas a Pagar</small>
+  					<small>Gestão de Contas a <span class="text-danger">Pagar</span></small>
   				</h1>
 		  </div>
 
@@ -41,7 +65,7 @@
 						<div class="row">
 							<div class="col-md-2">
 								<label>Data: </label>
-								<input type="text" class="form-control" name="date" id="lancamentoDate" th:value="${#dates.format(lancamento.date, 'dd/MM/YYYY')}" placeholder="DD/MM/YYYY" />
+								<input type="text" class="form-control" name="date" id="lancamentoDate" th:value="${#dates.format(lancamento.date, 'dd/MM/YYYY')}" />
 							</div>
 							<div class="col-md-3">
 								<label>Valor:</label>
