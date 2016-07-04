@@ -1,8 +1,8 @@
 package br.com.fico.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,22 +13,34 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import br.com.fico.helpers.CalendarToDateStringSerializer;
+import br.com.fico.helpers.DateStringToCalendarDeserializer;
+
 @Entity
-public class Lancamento {
+public class Lancamento implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id @GeneratedValue
 	private Long id;
 	@Column(nullable=false)
 	private String description;
+	
 	@Temporal(TemporalType.DATE)
-	private Date date = Calendar.getInstance().getTime();
+	@JsonSerialize(using = CalendarToDateStringSerializer.class)
+	@JsonDeserialize(using = DateStringToCalendarDeserializer.class)
+	private Calendar date = Calendar.getInstance();
+
 	@Column(nullable=false)
-	private BigDecimal amount = new BigDecimal(1000.00);
-	@Column(nullable=false)
+	private BigDecimal amount = new BigDecimal(0.00);
 	/**
 	 * org.hibernate.type.NumericBooleanType
 	 * 1=true, 0=false
 	 */
+	@Column(nullable=false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean paid = false;
 
@@ -36,7 +48,7 @@ public class Lancamento {
 		super();
 	}
 
-	public Lancamento(Long id, String description, Date date, BigDecimal amount, Boolean paid) {
+	public Lancamento(Long id, String description, Calendar date, BigDecimal amount, Boolean paid) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -61,11 +73,11 @@ public class Lancamento {
 		this.description = description;
 	}
 
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 

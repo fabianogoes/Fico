@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head lang="pt-br">
     	<title th:text="#{system.name}">Fico</title>
     	<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block>  /*/-->
@@ -28,7 +28,7 @@
 			});
 		</script>
   	</head>
-<body>
+<body ng-controller="LaunchController as ctrl">
 
 	<!--/*/ <th:block th:include="fragments/header :: header"></th:block>  /*/-->
 
@@ -51,36 +51,48 @@
           	<!-- /// Begin-Page Containt //////////////////////////////////// -->
 			<div class="panel panel-default">
   				<div class="panel-body">          	
-					<form th:action="@{/lancamento}" method="post">
+					<form ng-submit="ctrl.postLaunch()" method="post">
 						<div class="row">
 							<div class="col-md-2">
 								<label>ID:</label>
-								<input type="text" class="form-control" name="id" id="lancamentoId" th:value="${lancamento.id}" readonly="readonly" />
+								<input type="text" 
+									   class="form-control" 
+									   ng-model="ctrl.launch.id" 
+									   readonly="readonly" />
 							</div>
 							<div class="col-md-10">
 								<label>Descrição:</label>
-								<input type="text" class="form-control" name="description" id="lancamentoDescription" th:value="${lancamento.description}" />
+								<input type="text" 
+									   class="form-control" 
+									   ng-model="ctrl.launch.description" 
+									   required="required" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-2">
 								<label>Data: </label>
-								<input type="text" class="form-control" name="date" id="lancamentoDate" th:value="${#dates.format(lancamento.date, 'dd/MM/YYYY')}" />
+								<input type="text" 
+								       class="form-control" 
+								       id="lancamentoDate"
+								       ng-model="ctrl.launch.date" />
 							</div>
 							<div class="col-md-3">
 								<label>Valor:</label>
 								<div class="input-group">
 		    						<span class="input-group-addon">R$</span>
-									<input type="text" class="form-control text-right" name="amount" th:value="${#numbers.formatDecimal(lancamento.amount, 1, 2)}" id="lancamentoAmount" placeholder="R$ 0,00" />
+									<input type="text" 
+									       class="form-control text-right" 
+									       ng-model="ctrl.launch.amount" 
+									       placeholder="R$ 0,00" />
 		  						</div>
 							</div>
 							<div class="col-md-5">
 								<label>Banco:</label>
 								<div class="input-group">
-									<select class="form-control" name="bank.id" id="lancamentoBank">
-										<option th:each="bank : ${banks}" 
-          										th:value="${bank.id}" 
-          										th:text="${bank.name}">Banco</option>
+				    				<select class="form-control" 
+				    					    required="required"
+									    	ng-model="ctrl.bankSelected"
+				    					    ng-options="bank.name for bank in ctrl.listBanks track by bank.id">
 									</select>
 									<span class="input-group-addon-no">
 										<a href="#" data-toggle="modal" data-target="#myModal" >
@@ -93,7 +105,9 @@
 								<label>&nbsp;</label><br/>
 						        <div class="checkbox pull-right">
 						          <label>
-						            <input type="checkbox" class="form-control" th:checked="${lancamento.paid}"  name="paidText" id="lancamentoPaid" />
+						            <input type="checkbox" 
+						                   class="form-control" 
+						                   ng-model="ctrl.launch.paid" />
 						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 						            <strong th:class="${lancamento.paid == true} ? 'text-success' : 'text-danger'" >Pago ?</strong>
 						          </label>
@@ -163,7 +177,7 @@
 						<button type="submit" class="btn btn-primary">
 							<i class="fa fa-floppy-o"></i>&nbsp;Salvar
 						</button>
-						<a href="#" class="btn btn-default pull-right">
+						<a href="#" class="btn btn-default pull-right" data-dismiss="modal">
 							<i class="fa fa-times"></i>&nbsp;Cancelar
 						</a>
 					</div>
@@ -177,6 +191,10 @@
 	
 
 	<!--/*/ <th:block th:include="fragments/footerjsinc :: footerjsinc"></th:block>  /*/-->
+	<script type="text/javascript" src="../static/app/mainApp.js" th:src="@{/app/mainApp.js}" ></script>
+	<script type="text/javascript" src="../static/app/services/bank-service.js" th:src="@{/app/services/bank-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/services/launch-service.js" th:src="@{/app/services/launch-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/controllers/launch-controller.js" th:src="@{/app/controllers/launch-controller.js}" ></script>
     
 </body>
 </html>

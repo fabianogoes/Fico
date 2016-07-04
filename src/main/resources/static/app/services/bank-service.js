@@ -1,0 +1,17 @@
+// mainApp é uma variavel global no arquivo mainApp.js
+mainApp.factory('BankService', [ '$http', function($http) {
+
+	/**
+	 * APP_NAME = é uma variavel global inicializada em mainApp.js
+	 */
+	var rootUrlBank = APP_NAME + '/api/bank';
+	
+	var _findAll = function(){
+		return $http.get( rootUrlBank );
+	}	
+	
+	return {
+		findAll  : _findAll 
+	};	
+
+}]);
