@@ -92,10 +92,10 @@
 				    				<select class="form-control" 
 				    					    required="required"
 									    	ng-model="ctrl.bankSelected"
-				    					    ng-options="bank.name for bank in ctrl.listBanks track by bank.id">
+				    					    ng-options="bank.code +' - '+ bank.name for bank in ctrl.listBanks track by bank.id">
 									</select>
 									<span class="input-group-addon-no">
-										<a href="#" data-toggle="modal" data-target="#myModal" >
+										<a href="#" data-toggle="modal" data-target="#modalBank" >
 											<i class="fa fa-plus"></i>
 										</a>
 									</span>
@@ -148,7 +148,7 @@
     <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block>  /*/-->
     
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="modalBank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header text-center">
@@ -157,18 +157,27 @@
 	      </div>
 	      <div class="modal-body">
 
-			<form th:action="@{/bank}" method="post">
+			<form ng-submit="ctrl.createBank()" method="post">
 			
-				<input type="hidden" class="form-control" name="id" id="bankId" />
 				<input type="hidden" class="form-control" name="nextUrl" id="bankNextUrl" value="/lancamento/new" />
+				<input type="hidden" 
+				       class="form-control" 
+				       ng-model="ctrl.bank.id" 
+				       id="bankId" />
 				<div class="row">
 					<div class="col-md-2">
 						<label>Código</label>
-						<input type="text" class="form-control" name="code" id="bankCode" />
+						<input type="text" 
+						       class="form-control" 
+						       ng-model="ctrl.bank.code" 
+						       id="bankCode" />
 					</div>
 					<div class="col-md-10">
 						<label>Nome</label>
-						<input type="text" class="form-control" name="name" id="bankName" />
+						<input type="text" 
+						       class="form-control" 
+						       ng-model="ctrl.bank.name" 
+						       id="bankName" />
 					</div>
 				</div>
 				<hr/>
@@ -195,6 +204,7 @@
 	<script type="text/javascript" src="../static/app/services/bank-service.js" th:src="@{/app/services/bank-service.js}" ></script>
 	<script type="text/javascript" src="../static/app/services/launch-service.js" th:src="@{/app/services/launch-service.js}" ></script>
 	<script type="text/javascript" src="../static/app/controllers/launch-controller.js" th:src="@{/app/controllers/launch-controller.js}" ></script>
+	<script type="text/javascript" src="../static/app/controllers/bank-controller.js" th:src="@{/app/controllers/bank-controller.js}" ></script>
     
 </body>
 </html>

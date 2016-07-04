@@ -21,8 +21,7 @@ public class LaunchRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public Lancamento post(@RequestBody Lancamento lancamento) {
-		//throw new NotImplementedException( "not implemented" );
+	public Lancamento create(@RequestBody Lancamento lancamento) {
 		System.out.println( "post( "+lancamento+" )" );
 		return lancamentoService.save(lancamento);
 	}

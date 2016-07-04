@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
  
-public class DateStringToCalendarDeserializer extends JsonDeserializer<Calendar> {
+public class StringToCalendarDeserializerHelper extends JsonDeserializer<Calendar> {
  
     @Override
     public Calendar deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {

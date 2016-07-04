@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
  
-public class CalendarToDateStringSerializer extends JsonSerializer<Calendar> {
+public class CalendarToStringSerializerHelpser extends JsonSerializer<Calendar> {
  
     @Override
     public void serialize(Calendar value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {

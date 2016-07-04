@@ -1,5 +1,12 @@
 package br.com.fico;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -13,6 +20,19 @@ public class FicoApplicationTests {
 
 	@Test
 	public void contextLoads() {
+	}
+	
+	@Test
+	public void testBigDecimalFormat() throws ParseException{
+		 String formatted = "1.000,50";
+		 
+         Locale ptBr = new Locale("pt", "BR");
+         DecimalFormat df = (DecimalFormat) NumberFormat.getInstance( ptBr );
+         df.setParseBigDecimal(true);
+         BigDecimal bd = (BigDecimal) df.parseObject(formatted);
+         System.out.println( bd );
+         
+         Assert.assertNotNull("bigDecimal não deve estar nulo", bd);
 	}
 
 }

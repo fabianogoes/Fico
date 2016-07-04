@@ -15,6 +15,12 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 			amount: 0,
 			paid: false
 	};
+	
+	self.bank = {
+			id: null, 
+			code: '',
+			name: '' 
+	};
 		
 	self.populateBanks = function(){
 		console.log( 'populateBanks()...' );
@@ -28,7 +34,7 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		console.log( 'postLaunch()...' );
 		var launchResponse = LaunchService.postLaunch( self.launch ).success(function(launchSaved){
 			self.launch = launchSaved;
-			console.log( self.launch );
+			console.log( self.launch );			
 			sweetAlert("OK", "Lançamento salvo com sucesso!", "success");
 		}).error(function(data, status) {
 			console.log( status );
@@ -36,6 +42,27 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 			sweetAlert("ERRO", data.message, "error");
         });
 	}
+	
+	self.createBank = function(){
+		console.log( 'createBank()...' );
+		console.log( self.bank )
+		var bankResponse = BankService.createBank( self.bank ).success(function(bankSaved){
+			self.bankSelected = bankSaved;
+			console.log( self.bankSelected );
+			sweetAlert("OK", "Banco["+bankSaved.name+"] salvo com sucesso!", "success");
+			return bankSaved;
+		}).success(function(bankSaved){
+			console.log( 'createBank() - encadeamento...' );
+			console.log( bankSaved );
+			self.populateBanks();
+			self.bankSelected = bankSaved;
+			$('#modalBank').modal('hide');
+		}).error(function(data, status) {
+			console.log( status );
+			console.log( data.message );
+			sweetAlert("ERRO", data.message, "error");
+        });
+	}	
 	
 	self.init();
 	

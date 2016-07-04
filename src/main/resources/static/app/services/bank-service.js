@@ -10,8 +10,13 @@ mainApp.factory('BankService', [ '$http', function($http) {
 		return $http.get( rootUrlBank );
 	}	
 	
+	var _createBank = function( bank ){
+		return $http.post( rootUrlBank, bank )
+	}
+	
 	return {
-		findAll  : _findAll 
+		findAll  : _findAll,
+		createBank : _createBank 
 	};	
 
 }]);

@@ -16,8 +16,10 @@ import org.hibernate.annotations.Type;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import br.com.fico.helpers.CalendarToDateStringSerializer;
-import br.com.fico.helpers.DateStringToCalendarDeserializer;
+import br.com.fico.helpers.StringToBigDecimalDeserializerHelper;
+import br.com.fico.helpers.BigDecimalToStringSerializerHelper;
+import br.com.fico.helpers.CalendarToStringSerializerHelpser;
+import br.com.fico.helpers.StringToCalendarDeserializerHelper;
 
 @Entity
 public class Lancamento implements Serializable {
@@ -30,11 +32,13 @@ public class Lancamento implements Serializable {
 	private String description;
 	
 	@Temporal(TemporalType.DATE)
-	@JsonSerialize(using = CalendarToDateStringSerializer.class)
-	@JsonDeserialize(using = DateStringToCalendarDeserializer.class)
+	@JsonSerialize(using = CalendarToStringSerializerHelpser.class)
+	@JsonDeserialize(using = StringToCalendarDeserializerHelper.class)
 	private Calendar date = Calendar.getInstance();
 
 	@Column(nullable=false)
+	@JsonSerialize(using = BigDecimalToStringSerializerHelper.class)
+	@JsonDeserialize(using = StringToBigDecimalDeserializerHelper.class)
 	private BigDecimal amount = new BigDecimal(0.00);
 	/**
 	 * org.hibernate.type.NumericBooleanType

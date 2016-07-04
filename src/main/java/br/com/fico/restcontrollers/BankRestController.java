@@ -3,8 +3,9 @@ package br.com.fico.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fico.models.Bank;
@@ -21,9 +22,15 @@ public class BankRestController {
 		this.bankService = bankService;
 	}
 
-	@RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping
 	public List<Bank> get() {
 		return bankService.findAll();
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public Bank create(@RequestBody Bank bank) {
+		System.out.println( "post( "+bank+" )" );
+		return bankService.save(bank);
 	}
 
 }

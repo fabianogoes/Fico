@@ -1,5 +1,6 @@
 package br.com.fico.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +10,9 @@ public class Bank {
 
 	@Id @GeneratedValue
 	private Long id;
+	@Column(length=3, unique=true)
 	private String code;
+	@Column(unique=true)
 	private String name;
 
 	public Bank() {
