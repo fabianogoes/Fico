@@ -116,7 +116,7 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		console.log( 'payLaunch( '+id+' )...' );
 		var launchResponse = LaunchService.payLaunch( id ).success(function(response){
 			console.log( response );			
-			sweetAlert("OK", "Lançamento Pago com sucesso!", "success");
+			sweetAlert("OK", "Lançamento Atualizado com sucesso!", "success");
 			return response;
 		}).success(function(bankSaved){
 			console.log( 'payLaunch() - encadeamento...' );

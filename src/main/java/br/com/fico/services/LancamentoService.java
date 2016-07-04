@@ -36,7 +36,8 @@ public class LancamentoService {
 
 	public void pay(Long id) {
 		Lancamento lancamento = this.findOne(id);
-		lancamento.setPaid(true);
+		boolean pay = !lancamento.getPaid(); 
+		lancamento.setPaid(pay);
 		this.save(lancamento);
 	}
 
