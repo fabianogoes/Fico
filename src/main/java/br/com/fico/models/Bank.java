@@ -4,15 +4,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = {
+		@UniqueConstraint(name = "UQ_BANK_CODE", columnNames = { "code" }),
+		@UniqueConstraint(name = "UQ_BANK_NAME", columnNames = { "name" })
+})
 public class Bank {
 
 	@Id @GeneratedValue
 	private Long id;
-	@Column(length=3, unique=true)
+	@Column(length=3, nullable=false)
 	private String code;
-	@Column(unique=true)
+	@Column(nullable=false)
 	private String name;
 
 	public Bank() {

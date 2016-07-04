@@ -6,35 +6,38 @@
 	
 		<div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active">
-            	<a href="index.html" th:href="@{/}">
-            		<i class="fa fa-tachometer"></i>&nbsp;
-            		Dashboard <span class="sr-only">(current)</span>
+            <li th:class="${module == 'dashboard' ? 'active' : '' }">
+            	<a href="index.html" th:href="@{/}" >
+            		<img src="../static/img/dashboard.png" th:src="@{/img/dashboard.png}" width="40" height="40" class="img-circle" alt="Sobre"/>
+            		&nbsp;Dashboard
             	</a>
             </li>
-            <li>
+            <li th:class="${module == 'payment' ? 'active' : '' }">
             	<a href="lancamento.html" th:href="@{/lancamento/new}">
-            		<i class="fa fa-money text-danger"></i>&nbsp;
-            		Contas a Pagar
+					<img src="../static/img/contas-a-pagar.png" th:src="@{/img/contas-a-pagar.png}" class="img-circle" width="40" height="40"  alt="Pagamentos"/>
+            		&nbsp;Pagamentos
             	</a>
             </li>
             <li>
             	<a href="#">
-            		<i class="fa fa-money text-success"></i>&nbsp;
-            		Contas a Receber
+					<img src="../static/img/contas-a-receber.png" th:src="@{/img/contas-a-receber.png}" width="40" height="40" class="img-circle" alt="Recebimentos"/>
+            		&nbsp;Recebimentos
             	</a>
             </li>
-            <li><a href="#"><i class="fa fa-credit-card-alt"></i>&nbsp;Cartão de Crédito</a></li>
-            <li><a href="#"><i class="fa fa-bank"></i>&nbsp;Bancos</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href=""><i class="fa fa-users"></i>&nbsp;Usuários</a></li>
-            <li><a href=""><i class="fa fa-list-alt"></i>&nbsp;Perfil</a></li>
-            <li><a href=""><i class="fa fa-cogs"></i>&nbsp;Configurações</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href=""><i class="fa fa-life-ring"></i>&nbsp;Ajuda</a></li>
-            <li><a href=""><i class="fa fa-life-ring"></i>&nbsp;Sobre</a></li>
+            <li>
+            	<a href="">
+            		<img src="../static/img/user-login.png" th:src="@{/img/user-login.png}" width="40" height="40" class="img-circle" alt="Usuários"/>
+            		&nbsp;Usuários
+            	</a>
+            </li>
+            <li>
+            	<a href="">
+            		<img src="../static/img/settings.png" th:src="@{/img/settings.png}" width="40" height="40" class="img-circle" alt="Configurações"/>
+            		&nbsp;Configurações
+            	</a>
+            </li>
           </ul>
         </div>
             

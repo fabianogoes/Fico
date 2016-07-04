@@ -1,5 +1,7 @@
 package br.com.fico.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,24 @@ public class LancamentoService {
 
 	public Lancamento save(Lancamento lancamento) {
 		return this.lancamentoRepository.save(lancamento);
+	}
+
+	public List<Lancamento> findAll() {
+		return (List<Lancamento>) this.lancamentoRepository.findAll();
+	}
+
+	public void delete(Long id) {
+		this.lancamentoRepository.delete(id);
+	}
+
+	public Lancamento findOne(Long id) {
+		return this.lancamentoRepository.findOne(id);
+	}
+
+	public void pay(Long id) {
+		Lancamento lancamento = this.findOne(id);
+		lancamento.setPaid(true);
+		this.save(lancamento);
 	}
 
 }

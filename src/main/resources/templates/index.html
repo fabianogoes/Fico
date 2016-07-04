@@ -26,47 +26,49 @@
 
           <div class="row placeholders">
           	<!-- /// Begin-Page Containt //////////////////////////////////// -->
-            <div class="col-xs-6 col-sm-3 placeholder">            
+            <div class="col-xs-6 col-sm-3 placeholder"  data-toggle="tooltip" data-placement="top" title="Gestão de Gastos...">            
             	<a href="lancamento.html" th:href="@{/lancamento/new}">
               		<img src="../static/img/contas-a-pagar.png" th:src="@{/img/contas-a-pagar.png}" width="100" height="100" class="img-circle img-responsive" alt="Contas a Pagar"/>
             	</a>
             	<h4>
             		<a href="lancamento.html" th:href="@{/lancamento/new}">
-            			<i class="fa fa-money text-danger"></i>&nbsp;
-            			Contas a Pagar
+            			Pagamentos
             		</a>
             	</h4>
-           		<span class="text-muted">Gestão de Contas a Pagar</span>
+           		<span class="text-muted">Gestão de Gastos</span>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
+            <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Gestão de Ganhos...">
             	<a href="#">
               		<img src="../static/img/contas-a-receber.png" th:src="@{/img/contas-a-receber.png}" width="100" height="100" class="img-circle img-responsive" alt="Contas a Receber"/>
               	</a>
               	<h4>
               		<a href="#">
-              			<i class="fa fa-money text-success"></i>&nbsp;
-              			Contas a Receber
+              			Recebimentos
               		</a>
               	</h4>
-              	<span class="text-muted">Gestão de Contas a Receber</span>
+              	<span class="text-muted">Gestão de Ganhos</span>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
+            <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Controle de Acesso...">
               	<a href="#">
-              		<img src="../static/img/cartao-de-credito.png" th:src="@{/img/cartao-de-credito.png}" width="100" height="100" class="img-circle img-responsive" alt="Cartão de Crédito"/>
+              		<img src="../static/img/user-login.png" th:src="@{/img/user-login.png}" width="100" height="100" class="img-circle img-responsive" alt="Usuários"/>
               	</a>
               	<h4>
-              		<a href="#"><i class="fa fa-credit-card-alt"></i>&nbsp;Cartão de Crédito</a>
+              		<a href="#">
+              			&nbsp;Usuários
+              		</a>
               	</h4>
-              	<span class="text-muted">Controle de Cartões de Crédito</span>
+              	<span class="text-muted">Controle de Acesso</span>
             </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
+            <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Configurações do Sistema...">
               	<a href="#">
-              		<img src="../static/img/bank.png" th:src="@{/img/bank.png}" width="100" height="100" class="img-circle img-responsive" alt="Bancos"/>
+              		<img src="../static/img/settings.png" th:src="@{/img/settings.png}" width="100" height="100" class="img-circle img-responsive" alt="Configurações"/>
               	</a>
               	<h4>
-              		<a href="#"><i class="fa fa-bank"></i>&nbsp;Bancos</a>
+              		<a href="#">
+              			&nbsp;Configurações
+              		</a>
               	</h4>
-              	<span class="text-muted">Gestão de Contas Bancárias</span>
+              	<span class="text-muted">Configurações do Sistema</span>
             </div>
             
             <!-- /// End-Page Containt //////////////////////////////////// -->

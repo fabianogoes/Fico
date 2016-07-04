@@ -13,6 +13,7 @@ public class LancamentoController {
 	@RequestMapping("/new")
 	public String getNew(Model model) {
 		model.addAttribute("lancamento", new Lancamento());
+		model.addAttribute("module", "payment");
 		return "lancamento";
 	}
 }

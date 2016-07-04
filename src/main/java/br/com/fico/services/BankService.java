@@ -19,7 +19,18 @@ public class BankService {
 	}
 
 	public Bank save(Bank bank) {
-		return this.bankRepository.save(bank);
+		try{
+			return this.bankRepository.save(bank);
+		}catch(Exception ex){
+			System.out.println( ex.getMessage() );
+			if( ex.getMessage().contains( "constraint [UQ_BANK_CODE]" ) ){
+				throw new RuntimeException( "Código de Banco ["+bank.getCode()+" ] já existe!" );
+			}
+			if( ex.getMessage().contains( "constraint [UQ_BANK_NAME]" ) ){
+				throw new RuntimeException( "Nome de Banco ["+bank.getName()+" ] já existe!" );
+			}
+		}
+		return null;
 	}
 
 	public List<Bank> findAll() {

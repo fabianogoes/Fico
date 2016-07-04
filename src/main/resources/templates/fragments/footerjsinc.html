@@ -7,7 +7,12 @@
 		<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 	    <script src="../../static/js/holder.min.js" th:src="@{/js/holder.min.js}"></script>
 	    <script src="../../static/js/ie10-viewport-bug-workaround.js" th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
-	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>    
+	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>  
+	    <script type="text/javascript">
+  			$(document).ready(function() {
+    			$("body").tooltip({ selector: '[data-toggle=tooltip]' });
+			});
+  		</script>	      
 	</div>
 	
 </body>

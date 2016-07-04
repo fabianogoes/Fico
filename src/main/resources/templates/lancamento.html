@@ -41,101 +41,84 @@
 
           <div class="page-header">
   				<h1>
-  					<i class="fa fa-money text-danger"></i>&nbsp;
-  					<span>Contas a Pagar</span>&nbsp;
-  					<small>Gestão de Contas a <span class="text-danger">Pagar</span></small>
+  					<img src="../static/img/contas-a-pagar.png" th:src="@{/img/contas-a-pagar.png}" class="img-circle" width="80" height="80"  alt="Pagamentos"/>
+  					&nbsp;
+  					<span>Pagamentos</span>&nbsp;
+  					<small>Gestão de Gastos</small>
   				</h1>
 		  </div>
 
           <div class="row row-containt">
           	<!-- /// Begin-Page Containt //////////////////////////////////// -->
-			<div class="panel panel-default">
-  				<div class="panel-body">          	
-					<form ng-submit="ctrl.postLaunch()" method="post">
-						<div class="row">
-							<div class="col-md-2">
-								<label>ID:</label>
-								<input type="text" 
-									   class="form-control" 
-									   ng-model="ctrl.launch.id" 
-									   readonly="readonly" />
-							</div>
-							<div class="col-md-10">
-								<label>Descrição:</label>
-								<input type="text" 
-									   class="form-control" 
-									   ng-model="ctrl.launch.description" 
-									   required="required" />
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-2">
-								<label>Data: </label>
-								<input type="text" 
-								       class="form-control" 
-								       id="lancamentoDate"
-								       ng-model="ctrl.launch.date" />
-							</div>
-							<div class="col-md-3">
-								<label>Valor:</label>
-								<div class="input-group">
-		    						<span class="input-group-addon">R$</span>
-									<input type="text" 
-									       class="form-control text-right" 
-									       ng-model="ctrl.launch.amount" 
-									       placeholder="R$ 0,00" />
-		  						</div>
-							</div>
-							<div class="col-md-5">
-								<label>Banco:</label>
-								<div class="input-group">
-				    				<select class="form-control" 
-				    					    required="required"
-									    	ng-model="ctrl.bankSelected"
-				    					    ng-options="bank.code +' - '+ bank.name for bank in ctrl.listBanks track by bank.id">
-									</select>
-									<span class="input-group-addon-no">
-										<a href="#" data-toggle="modal" data-target="#modalBank" >
-											<i class="fa fa-plus"></i>
-										</a>
-									</span>
-								</div>
-							</div>	
-							<div class="col-md-2">
-								<label>&nbsp;</label><br/>
-						        <div class="checkbox pull-right">
-						          <label>
-						            <input type="checkbox" 
-						                   class="form-control" 
-						                   ng-model="ctrl.launch.paid" />
-						            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-						            <strong th:class="${lancamento.paid == true} ? 'text-success' : 'text-danger'" >Pago ?</strong>
-						          </label>
-						        </div>
-							</div>
-						</div>
-						<hr/>
-						<div class="row">
-							<div class="col-md-12">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-floppy-o"></i>&nbsp;Salvar
-								</button>
-								<a href="#" class="btn btn-default pull-right">
-									<i class="fa fa-times"></i>&nbsp;Cancelar
-								</a>
-							</div>
-						</div>
-					</form>	 
-				</div><!-- panel body -->
-								
-			</div>  
 
-			<div th:if="${alertStatus != null}">
-				<div th:class="${alertStatus == 'success'} ? 'alert alert-success alert-dismissible' : 'alert alert-danger alert-dismissible'" class="alert alert-warning alert-dismissible" role="alert">
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				  <span th:text="${alertMessage}"></span>
-				</div>
-			</div>
+			<!--/*/ <th:block th:include="lancamento-form-modal :: lancamento-form-modal"></th:block>  /*/-->	
+			<div class="table-responsive">
+			  <table class="table table-striped table-hover">
+	
+					<thead>
+						<tr>
+							<th class="col-md-1 text-center">ID</th>
+							<th>Descrição</th>
+							<th class="col-md-1 text-center">Data</th>
+							<th class="col-md-2 text-center">Valor</th>
+							<th class="col-md-2 text-center">Banco</th>
+							<th class="col-md-1 text-center">Pago ?</th>
+							<th class="col-md-2 text-center">
+								<a href="#" 
+								   class="btn btn-sm btn-primary" 
+								   ng-click="ctrl.showLaunchFormModal()" 
+								   data-toggle="tooltip" data-placement="top" title="Cadastrar Novo Lançamento...">
+									<i class="fa fa-plus"></i>&nbsp;Novo
+								</a>				
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+					   <tr ng-repeat = "launch in ctrl.listAll">
+					      <td class="col-md-1 text-center">{{ launch.id }}</td>
+					      <td>{{ launch.description }}</td>
+					      <td class="col-md-1 text-center">
+					      	<span class="badge">{{ launch.date }}</span>
+					      </td>
+					      <td class="col-md-2 text-center">
+					      	{{ 'R$ ' + launch.amount }}
+					      </td>
+					      <td class="col-md-2 text-center">
+					      	{{ launch.bank.code +' - '+ launch.bank.name }}
+					      </td>
+					      <td class="col-md-1 text-center">	
+					      	<div ng-if=" launch.paid == true ">
+							    <i class="fa fa-check-square text-success fa-2x" aria-hidden="true"></i>
+							</div>
+							<div ng-if=" launch.paid == false ">
+							    <i class="fa fa-times text-danger fa-2x" aria-hidden="true"></i>
+							</div>
+					      </td>
+					      <td class="col-md-2 text-center">
+								<a href="#" 
+								   class="btn btn-sm btn-default" 
+								   ng-click="ctrl.editLaunch( launch.id )"  
+								   data-toggle="tooltip" data-placement="top" title="Editar Lançamento...">
+										<i class="fa fa-pencil text-primary"></i>
+								</a>
+								<a href="#" 
+								   class="btn btn-sm btn-default" 
+								   ng-click="ctrl.deleteLaunch( launch.id )"
+								   data-toggle="tooltip" data-placement="top" title="Deletar Lançamento..." >
+										<i class="fa fa-trash text-danger"></i>
+								</a>								
+								<a href="#" 
+								   class="btn btn-sm btn-default" 
+								   ng-click="ctrl.payLaunch( launch.id )"
+								   data-toggle="tooltip" data-placement="top" title="Pagar Lançamento..." >
+										<i class="fa fa-money text-success"></i>
+								</a>								
+					      </td>
+					   </tr>					
+					</tbody>
+					
+			  </table>
+			</div>	
 			
             <!-- /// End-Page Containt //////////////////////////////////// -->
           </div>
@@ -147,64 +130,12 @@
 
     <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block>  /*/-->
     
-	<!-- Modal -->
-	<div class="modal fade" id="modalBank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header text-center">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Bancos</h4>
-	      </div>
-	      <div class="modal-body">
-
-			<form ng-submit="ctrl.createBank()" method="post">
-			
-				<input type="hidden" class="form-control" name="nextUrl" id="bankNextUrl" value="/lancamento/new" />
-				<input type="hidden" 
-				       class="form-control" 
-				       ng-model="ctrl.bank.id" 
-				       id="bankId" />
-				<div class="row">
-					<div class="col-md-2">
-						<label>Código</label>
-						<input type="text" 
-						       class="form-control" 
-						       ng-model="ctrl.bank.code" 
-						       id="bankCode" />
-					</div>
-					<div class="col-md-10">
-						<label>Nome</label>
-						<input type="text" 
-						       class="form-control" 
-						       ng-model="ctrl.bank.name" 
-						       id="bankName" />
-					</div>
-				</div>
-				<hr/>
-				<div class="row">
-					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary">
-							<i class="fa fa-floppy-o"></i>&nbsp;Salvar
-						</button>
-						<a href="#" class="btn btn-default pull-right" data-dismiss="modal">
-							<i class="fa fa-times"></i>&nbsp;Cancelar
-						</a>
-					</div>
-				</div>
-			</form>
-
-	      </div>
-	    </div>
-	  </div>
-	</div>    
-	
-
 	<!--/*/ <th:block th:include="fragments/footerjsinc :: footerjsinc"></th:block>  /*/-->
 	<script type="text/javascript" src="../static/app/mainApp.js" th:src="@{/app/mainApp.js}" ></script>
 	<script type="text/javascript" src="../static/app/services/bank-service.js" th:src="@{/app/services/bank-service.js}" ></script>
 	<script type="text/javascript" src="../static/app/services/launch-service.js" th:src="@{/app/services/launch-service.js}" ></script>
 	<script type="text/javascript" src="../static/app/controllers/launch-controller.js" th:src="@{/app/controllers/launch-controller.js}" ></script>
 	<script type="text/javascript" src="../static/app/controllers/bank-controller.js" th:src="@{/app/controllers/bank-controller.js}" ></script>
-    
+        
 </body>
 </html>
