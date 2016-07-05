@@ -1,3 +1,7 @@
+/**
+	Default Color: #DC564C
+**/
+
 body{
 	margin-top: 0px;
 }
@@ -268,10 +272,16 @@ body{
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
-  background-color: #428BCA;
+  background-color: #DC564C;
   color: #fff;
 }
 
 .modal-footer {
   padding: 5px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #DC564C;
+  border-color: #d43f3a;
 }
