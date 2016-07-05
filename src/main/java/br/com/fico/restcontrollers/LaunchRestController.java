@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fico.models.Lancamento;
-import br.com.fico.services.LancamentoService;
+import br.com.fico.models.Launch;
+import br.com.fico.services.LaunchService;
 
 @RestController
 @RequestMapping("/api/launch")
 public class LaunchRestController {
 
-	private LancamentoService lancamentoService;
+	private LaunchService lancamentoService;
 
 	@Autowired
-	public void setLancamentoService(LancamentoService lancamentoService) {
+	public void setLancamentoService(LaunchService lancamentoService) {
 		this.lancamentoService = lancamentoService;
 	}
 
 	@RequestMapping
-	public List<Lancamento> get() {
+	public List<Launch> get() {
 		System.out.println("get( )");
 		return lancamentoService.findAll();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public Lancamento create(@RequestBody Lancamento lancamento) {
+	public Launch create(@RequestBody Launch lancamento) {
 		System.out.println("post( " + lancamento + " )");
 		return lancamentoService.save(lancamento);
 	}
@@ -51,7 +51,7 @@ public class LaunchRestController {
 	}
 
 	@RequestMapping(value = "/{id}")
-	public Lancamento get(@PathVariable Long id) {
+	public Launch get(@PathVariable Long id) {
 		System.out.println("get( " + id + " )");
 		return this.lancamentoService.findOne(id);
 	}

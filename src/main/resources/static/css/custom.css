@@ -251,3 +251,7 @@ body{
   background-color: #428BCA;
   color: #fff;
 }
+
+.modal-footer {
+  padding: 5px;
+}

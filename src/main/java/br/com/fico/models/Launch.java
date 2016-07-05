@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
@@ -24,7 +25,7 @@ import br.com.fico.helpers.StringToBigDecimalDeserializerHelper;
 import br.com.fico.helpers.StringToCalendarDeserializerHelper;
 
 @Entity
-public class Lancamento implements Serializable {
+public class Launch implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,37 +38,70 @@ public class Lancamento implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@JsonSerialize(using = CalendarToStringSerializerHelpser.class)
 	@JsonDeserialize(using = StringToCalendarDeserializerHelper.class)
-	private Calendar date = Calendar.getInstance();
+	private Calendar createdDate = Calendar.getInstance();
 
+	@Temporal(TemporalType.DATE)
+	@JsonSerialize(using = CalendarToStringSerializerHelpser.class)
+	@JsonDeserialize(using = StringToCalendarDeserializerHelper.class)
+	private Calendar doneDate;
+
+	@Temporal(TemporalType.DATE)
+	@JsonSerialize(using = CalendarToStringSerializerHelpser.class)
+	@JsonDeserialize(using = StringToCalendarDeserializerHelper.class)
 	@Column(nullable = false)
+	private Calendar maturityDate;
+
 	@JsonSerialize(using = BigDecimalToStringSerializerHelper.class)
 	@JsonDeserialize(using = StringToBigDecimalDeserializerHelper.class)
+	@Column(nullable = false)
 	private BigDecimal amount = new BigDecimal(0.00);
 	/**
 	 * org.hibernate.type.NumericBooleanType 1=true, 0=false
 	 */
 	@Column(nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
-	private Boolean paid = false;
+	private Boolean done = false;
 
 	@ManyToOne(optional = false)
 	private Bank bank;
 
-	public Lancamento() {
+	@Transient
+	private Boolean late; // atrasado
+
+	public Launch() {
 		super();
 	}
 
-	public Lancamento(Long id, String description, Calendar date, BigDecimal amount, Boolean paid) {
+	public Launch(Long id, String description, Calendar createdDate, Calendar doneDate, Calendar maturityDate,
+			BigDecimal amount, Boolean done) {
 		super();
 		this.id = id;
 		this.description = description;
-		this.date = date;
+		this.createdDate = createdDate;
+		this.doneDate = doneDate;
+		this.maturityDate = maturityDate;
 		this.amount = amount;
-		this.paid = paid;
+		this.done = done;
 	}
-	
-	public Lancamento(Long id, String description, Calendar date, BigDecimal amount, Boolean paid, Bank bank) {
-		this(id, description, date, amount, paid); 
+
+	public Launch(Long id, String description, BigDecimal amount, Bank bank) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.amount = amount;
+		this.bank = bank;
+	}
+
+	public Launch(Long id, String description, Calendar createdDate, Calendar doneDate, Calendar maturityDate,
+			BigDecimal amount, Boolean done, Bank bank) {
+		this(id, description, createdDate, doneDate, maturityDate, amount, done);
+		this.id = id;
+		this.description = description;
+		this.createdDate = createdDate;
+		this.doneDate = doneDate;
+		this.maturityDate = maturityDate;
+		this.amount = amount;
+		this.done = done;
 		this.bank = bank;
 	}
 
@@ -87,14 +121,6 @@ public class Lancamento implements Serializable {
 		this.description = description;
 	}
 
-	public Calendar getDate() {
-		return date;
-	}
-
-	public void setDate(Calendar date) {
-		this.date = date;
-	}
-
 	public BigDecimal getAmount() {
 		return amount;
 	}
@@ -103,20 +129,53 @@ public class Lancamento implements Serializable {
 		this.amount = amount;
 	}
 
-	public Boolean getPaid() {
-		return paid;
-	}
-
-	public void setPaid(Boolean paid) {
-		this.paid = paid;
-	}
-
 	public Bank getBank() {
 		return bank;
 	}
 
 	public void setBank(Bank bank) {
 		this.bank = bank;
+	}
+
+	public Calendar getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Calendar createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Calendar getDoneDate() {
+		return doneDate;
+	}
+
+	public void setDoneDate(Calendar doneDate) {
+		this.doneDate = doneDate;
+	}
+
+	public Calendar getMaturityDate() {
+		return maturityDate;
+	}
+
+	public void setMaturityDate(Calendar maturityDate) {
+		this.maturityDate = maturityDate;
+	}
+
+	public Boolean getDone() {
+		return done;
+	}
+
+	public void setDone(Boolean done) {
+		this.done = done;
+	}
+
+	public Boolean getLate() {
+		late = Calendar.getInstance().getTime().after( this.getMaturityDate().getTime() );
+		return late;
+	}
+
+	public void setLate(Boolean late) {
+		this.late = late;
 	}
 
 	@Override
@@ -135,7 +194,7 @@ public class Lancamento implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Lancamento other = (Lancamento) obj;
+		Launch other = (Launch) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -146,8 +205,10 @@ public class Lancamento implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Lancamento [id=" + id + ", description=" + description + ", date=" + DateTimeHelper.toDate(date) + ", amount=" + amount
-				+ ", paid=" + paid + ", bank=" + bank + "]";
+		return "Launch [id=" + id + ", description=" + description + ", createdDate="
+				+ DateTimeHelper.toDate(createdDate) + ", doneDate=" + DateTimeHelper.toDate(doneDate)
+				+ ", maturityDate=" + DateTimeHelper.toDate(maturityDate) + ", amount=" + amount + ", done=" + done
+				+ ", bank=" + bank + "]";
 	}
 
 }

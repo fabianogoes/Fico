@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 	@RequestMapping
-	public String index(Model model){
-		model.addAttribute("module", "dashboard");
+	public String index(Model model) {
+		model.addAttribute("module", "dash");
 		return "index";
 	}
-	
+
+	@RequestMapping("/launch")
+	public String getNew(Model model) {
+		model.addAttribute("module", "launch");
+		return "launch";
+	}
 }
