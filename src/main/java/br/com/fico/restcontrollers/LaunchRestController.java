@@ -12,29 +12,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fico.models.Launch;
+import br.com.fico.models.LaunchType;
 import br.com.fico.services.LaunchService;
 
 @RestController
 @RequestMapping("/api/launch")
 public class LaunchRestController {
 
-	private LaunchService lancamentoService;
+	private LaunchService launchService;
 
 	@Autowired
-	public void setLancamentoService(LaunchService lancamentoService) {
-		this.lancamentoService = lancamentoService;
+	public void setLancamentoService(LaunchService launchService) {
+		this.launchService = launchService;
 	}
 
 	@RequestMapping
 	public List<Launch> get() {
 		System.out.println("get( )");
-		return lancamentoService.findAll();
+		return launchService.findAll();
 	}
 
+	@RequestMapping(value="/type/{type}")
+	public List<Launch> getByType(@PathVariable("type") LaunchType type) {
+		System.out.println("get( )");
+		return launchService.findByType( type );
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public Launch create(@RequestBody Launch lancamento) {
-		System.out.println("post( " + lancamento + " )");
-		return lancamentoService.save(lancamento);
+	public Launch create(@RequestBody Launch launch) {
+		System.out.println("post( " + launch + " )");
+		return launchService.save(launch);
 	}
 
 	@RequestMapping(value = "/delete/{id}")
@@ -42,7 +49,7 @@ public class LaunchRestController {
 		System.out.println("delete( " + id + " )");
 		HttpStatus statusCode = HttpStatus.OK;
 		try {
-			this.lancamentoService.delete(id);
+			this.launchService.delete(id);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -53,7 +60,7 @@ public class LaunchRestController {
 	@RequestMapping(value = "/{id}")
 	public Launch get(@PathVariable Long id) {
 		System.out.println("get( " + id + " )");
-		return this.lancamentoService.findOne(id);
+		return this.launchService.findOne(id);
 	}
 	
 	@RequestMapping(value = "/pay/{id}")
@@ -61,7 +68,7 @@ public class LaunchRestController {
 		System.out.println("pay( " + id + " )");
 		HttpStatus statusCode = HttpStatus.OK;
 		try {
-			this.lancamentoService.pay(id);
+			this.launchService.pay(id);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			statusCode = HttpStatus.INTERNAL_SERVER_ERROR;

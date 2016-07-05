@@ -12,16 +12,16 @@
             		&nbsp;Dashboard
             	</a>
             </li>
-            <li th:class="${module == 'launch' ? 'active' : '' }">
-            	<a href="launch.html" th:href="@{/launch}">
-					<img src="../../static/img/contas-a-pagar.png" th:src="@{/img/contas-a-pagar.png}" class="img-circle" width="40" height="40"  alt="Pagamentos"/>
-            		&nbsp;Pagamentos
+            <li th:class="${module == 'payments' ? 'active' : '' }">
+            	<a href="launch.html" th:href="@{/payments}">
+					<img src="../../static/img/payments.png" th:src="@{/img/payments.png}" class="img-circle" width="40" height="40"  alt="Payments"/>
+            		&nbsp;<span th:text="#{system.payments.name}">Pagamentos</span>
             	</a>
             </li>
-            <li>
-            	<a href="#">
-					<img src="../../static/img/contas-a-receber.png" th:src="@{/img/contas-a-receber.png}" width="40" height="40" class="img-circle" alt="Recebimentos"/>
-            		&nbsp;Recebimentos
+            <li th:class="${module == 'receipts' ? 'active' : '' }">
+            	<a href="launch.html" th:href="@{/receipts}">
+					<img src="../../static/img/receipts.png" th:src="@{/img/receipts.png}" width="40" height="40" class="img-circle" alt="Receipts"/>
+            		&nbsp;<span th:text="#{system.receipts.name}">Recebimentos</span>
             	</a>
             </li>
           </ul>

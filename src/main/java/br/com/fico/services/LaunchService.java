@@ -7,43 +7,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fico.models.Launch;
+import br.com.fico.models.LaunchType;
 import br.com.fico.repositories.LaunchRepository;
 
 @Service
 public class LaunchService {
 
-	private LaunchRepository lancamentoRepository;
+	private LaunchRepository launchRepository;
 
 	@Autowired
-	public void setLancamentoRepository(LaunchRepository lancamentoRepository) {
-		this.lancamentoRepository = lancamentoRepository;
+	public void setLancamentoRepository(LaunchRepository launchRepository) {
+		this.launchRepository = launchRepository;
 	}
 
-	public Launch save(Launch lancamento) {
-		Calendar doneDate = lancamento.getDone() ? Calendar.getInstance() : null;
-		lancamento.setDoneDate(doneDate);		
-		return this.lancamentoRepository.save(lancamento);
+	public Launch save(Launch launch) {
+		Calendar doneDate = launch.getDone() ? Calendar.getInstance() : null;
+		launch.setDoneDate(doneDate);		
+		return this.launchRepository.save(launch);
 	}
 
 	public List<Launch> findAll() {
-		return (List<Launch>) this.lancamentoRepository.findAll();
+		return (List<Launch>) this.launchRepository.findAll();
 	}
 
 	public void delete(Long id) {
-		this.lancamentoRepository.delete(id);
+		this.launchRepository.delete(id);
 	}
 
 	public Launch findOne(Long id) {
-		return this.lancamentoRepository.findOne(id);
+		return this.launchRepository.findOne(id);
 	}
 
 	public void pay(Long id) {
-		Launch lancamento = this.findOne(id);
-		boolean done = !lancamento.getDone(); 
-		lancamento.setDone(done);
+		Launch launch = this.findOne(id);
+		boolean done = !launch.getDone(); 
+		launch.setDone(done);
 		Calendar doneDate = done ? Calendar.getInstance() : null;
-		lancamento.setDoneDate(doneDate);
-		this.save(lancamento);
+		launch.setDoneDate(doneDate);
+		this.save(launch);
+	}
+
+	public List<Launch> findByType(LaunchType type) {
+		return this.launchRepository.findByType(type);
 	}
 
 }

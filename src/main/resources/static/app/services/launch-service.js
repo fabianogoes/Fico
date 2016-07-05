@@ -14,6 +14,10 @@ mainApp.factory('LaunchService', [ '$http', function($http) {
 		return $http.get( rootUrlBank );
 	}
 	
+	var _findByType = function( launchType ){
+		return $http.get( rootUrlBank + '/type/' + launchType  );
+	}
+	
 	var _deleteLaunch = function( id ){
 		return $http.get( rootUrlBank + "/delete/" + id );
 	}
@@ -31,7 +35,8 @@ mainApp.factory('LaunchService', [ '$http', function($http) {
 		findAll     : _findAll,
 		deleteLaunch: _deleteLaunch,
 		findLaunch  : _findLaunch,
-		payLaunch   : _payLaunch
+		payLaunch   : _payLaunch,
+		findByType  : _findByType
 	};	
 
 }]);

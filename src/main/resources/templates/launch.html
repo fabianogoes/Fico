@@ -41,10 +41,20 @@
 
           <div class="page-header">
   				<h1>
-  					<img src="../static/img/contas-a-pagar.png" th:src="@{/img/contas-a-pagar.png}" class="img-circle" width="80" height="80"  alt="Pagamentos"/>
-  					&nbsp;
-  					<span>Pagamentos</span>&nbsp;
-  					<small>Gestão de Gastos</small>
+  					<div th:if="${module == 'payments' }">
+	  					<img src="../static/img/payments.png" th:src="@{/img/payments.png}" class="img-circle" width="80" height="80"  alt="Payments"/>
+	  					&nbsp;
+	  					<span th:text="#{system.payments.name}">Pagamentos</span>&nbsp;
+	  					<small class ="text-danger" th:text="#{system.payments.description}">Gestão de Gastos</small>
+	  					<input type="hidden" id="typeId" value="PAYMENT" />
+  					</div>
+  					<div th:if="${module == 'receipts' }">
+	  					<img src="../static/img/receipts.png" th:src="@{/img/receipts.png}" class="img-circle" width="80" height="80"  alt="Receipts"/>
+	  					&nbsp;
+	  					<span th:text="#{system.receipts.name}">Recebimentos</span>&nbsp;
+	  					<small class="text-success" th:text="#{system.receipts.description}">Gestão de Ganhos</small>
+ 						<input type="hidden" id="typeId" value="RECEIPT" />
+  					</div>
   				</h1>
 		  </div>
 
@@ -66,7 +76,7 @@
 							<th class="col-md-2 text-center">
 								<a href="#" 
 								   class="btn btn-sm btn-primary" 
-								   ng-click="ctrl.showLaunchFormModal()" 
+								   ng-click="ctrl.showLaunchFormModal('new')" 
 								   data-toggle="tooltip" data-placement="top" title="Cadastrar Novo Lançamento...">
 									<i class="fa fa-plus"></i>&nbsp;Novo
 								</a>				

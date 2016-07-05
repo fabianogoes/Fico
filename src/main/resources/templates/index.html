@@ -27,26 +27,26 @@
           <div class="row placeholders">
           	<!-- /// Begin-Page Containt //////////////////////////////////// -->
             <div class="col-xs-6 col-sm-3 placeholder"  data-toggle="tooltip" data-placement="top" title="Gestão de Gastos...">            
-            	<a href="launch.html" th:href="@{/launch}">
-              		<img src="../static/img/contas-a-pagar.png" th:src="@{/img/contas-a-pagar.png}" width="100" height="100" class="img-circle img-responsive" alt="Contas a Pagar"/>
+            	<a href="launch.html" th:href="@{/payments}">
+              		<img src="../static/img/payments.png" th:src="@{/img/payments.png}" width="100" height="100" class="img-circle img-responsive" alt="Payments"/>
             	</a>
             	<h4>
-            		<a href="launch.html" th:href="@{/launch}">
+            		<a href="launch.html" th:href="@{/payments}" th:text="#{system.payments.name}">
             			Pagamentos
             		</a>
             	</h4>
-           		<span class="text-muted">Gestão de Gastos</span>
+           		<span class="text-muted" th:text="#{system.payments.description}">Controle de Gastos</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Gestão de Ganhos...">
-            	<a href="#">
-              		<img src="../static/img/contas-a-receber.png" th:src="@{/img/contas-a-receber.png}" width="100" height="100" class="img-circle img-responsive" alt="Contas a Receber"/>
+            	<a href="launch.html" th:href="@{/receipts}">
+              		<img src="../static/img/receipts.png" th:src="@{/img/receipts.png}" width="100" height="100" class="img-circle img-responsive" alt="Receipts"/>
               	</a>
               	<h4>
-              		<a href="#">
+              		<a href="launch.html" th:href="@{/receipts}" th:text="#{system.receipts.name}">
               			Recebimentos
               		</a>
               	</h4>
-              	<span class="text-muted">Gestão de Ganhos</span>
+              	<span class="text-muted" th:text="#{system.receipts.description}">Gestão de Ganhos</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Controle de Acesso...">
               	<a href="#">

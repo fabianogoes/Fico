@@ -6,6 +6,8 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -55,6 +57,11 @@ public class Launch implements Serializable {
 	@JsonDeserialize(using = StringToBigDecimalDeserializerHelper.class)
 	@Column(nullable = false)
 	private BigDecimal amount = new BigDecimal(0.00);
+
+	@Enumerated(EnumType.STRING)
+	@Column(length = 10, nullable = false)
+	private LaunchType type;
+
 	/**
 	 * org.hibernate.type.NumericBooleanType 1=true, 0=false
 	 */
@@ -73,7 +80,7 @@ public class Launch implements Serializable {
 	}
 
 	public Launch(Long id, String description, Calendar createdDate, Calendar doneDate, Calendar maturityDate,
-			BigDecimal amount, Boolean done) {
+			BigDecimal amount, Boolean done, LaunchType type) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -82,19 +89,21 @@ public class Launch implements Serializable {
 		this.maturityDate = maturityDate;
 		this.amount = amount;
 		this.done = done;
+		this.type = type;
 	}
 
-	public Launch(Long id, String description, BigDecimal amount, Bank bank) {
+	public Launch(Long id, String description, BigDecimal amount, Bank bank, LaunchType type) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.amount = amount;
+		this.type = type;
 		this.bank = bank;
 	}
 
 	public Launch(Long id, String description, Calendar createdDate, Calendar doneDate, Calendar maturityDate,
-			BigDecimal amount, Boolean done, Bank bank) {
-		this(id, description, createdDate, doneDate, maturityDate, amount, done);
+			BigDecimal amount, Boolean done, Bank bank, LaunchType type) {
+		this(id, description, createdDate, doneDate, maturityDate, amount, done, type);
 		this.id = id;
 		this.description = description;
 		this.createdDate = createdDate;
@@ -102,6 +111,7 @@ public class Launch implements Serializable {
 		this.maturityDate = maturityDate;
 		this.amount = amount;
 		this.done = done;
+		this.type = type;
 		this.bank = bank;
 	}
 
@@ -170,8 +180,16 @@ public class Launch implements Serializable {
 	}
 
 	public Boolean getLate() {
-		late = Calendar.getInstance().getTime().after( this.getMaturityDate().getTime() );
+		late = Calendar.getInstance().getTime().after(this.getMaturityDate().getTime());
 		return late;
+	}
+
+	public LaunchType getType() {
+		return type;
+	}
+
+	public void setType(LaunchType type) {
+		this.type = type;
 	}
 
 	public void setLate(Boolean late) {

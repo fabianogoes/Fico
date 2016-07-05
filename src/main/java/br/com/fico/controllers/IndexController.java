@@ -14,9 +14,15 @@ public class IndexController {
 		return "index";
 	}
 
-	@RequestMapping("/launch")
-	public String getNew(Model model) {
-		model.addAttribute("module", "launch");
+	@RequestMapping("/payments")
+	public String payments(Model model) {
+		model.addAttribute("module", "payments");
+		return "launch";
+	}
+	
+	@RequestMapping("/receipts")
+	public String receipts(Model model) {
+		model.addAttribute("module", "receipts");
 		return "launch";
 	}
 }

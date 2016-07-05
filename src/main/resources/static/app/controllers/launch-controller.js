@@ -15,10 +15,13 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 	self.listAll = [];
 	self.listBanks = [];
 	self.bankSelected = null;
+	self.launchType = 'RECEIPT';
 	
 	self.listAllLaunch = function(){
 		console.log( 'listAllLaunch()...' );
-		LaunchService.findAll().then(function(response){
+		
+		self.launchType = $("#typeId").val();
+		LaunchService.findByType( self.launchType ).then(function(response){
 			self.listAll = response.data;
 		});
 	}
@@ -43,11 +46,13 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 	
 	self.postLaunch = function(){
 		self.launch.bank = self.bankSelected;
+		self.launch.type = self.launchType;
 		console.log( self.launch );
 		var launchResponse = LaunchService.postLaunch( self.launch ).success(function(launchSaved){
 			self.launch = launchSaved;
 			self.hideLaunchFormModal();
-			sweetAlert("OK", "Lançamento salvo com sucesso!", "success");
+			var msg = self.launchType == 'PAYMENT' ? 'Pagamento cadastrado com sucesso!' : 'Recebimento cadastrado com sucesso!';
+			sweetAlert("OK", msg, "success");
 			return launchSaved;
 		}).success(function(bankSaved){
 			self.init();
@@ -60,7 +65,7 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		var launchResponse = LaunchService.findLaunch( id ).success(function(launchFind){
 			self.launch = launchFind;
 			self.bankSelected = self.launch.bank;
-			self.showLaunchFormModal();
+			self.showLaunchFormModal( 'edit' );
 		}).error(function(data, status) {
 			sweetAlert("ERRO", data.message, "error");
         });		
@@ -122,7 +127,8 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
         });
 	}	
 	
-	self.showLaunchFormModal = function(){
+	self.showLaunchFormModal = function(action){
+		self.launch = action == 'new' ? {} : self.launch; 
 		$('#modalLaunch').modal('show');
 		$('#modalBank').modal('hide');
 	}

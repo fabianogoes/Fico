@@ -11,14 +11,34 @@
 		    <div class="modal-content">
 		      	<div class="modal-header text-center">
 		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        	<h4 class="modal-title" id="myModalLabel">Lançamento</h4>
+		        	<div th:if="${module == 'payments' }">
+		        		<h4 class="modal-title" id="myModalLabel" th:text="#{system.payments.name}">Pagamentos</h4>
+		        		 ${module == 'receipts' }
+		        	</div>
+		        	<div th:if="${module == 'receipts' }" >
+		        		<h4 class="modal-title" id="myModalLabel" th:text="#{system.receipts.name}">Recebimentos</h4>
+		        	</div>
 		      	</div>
 		      	<div class="modal-body">		    
 
-					<form ng-submit="ctrl.postLaunch()" method="post">
+					<form ng-submit="ctrl.postLaunch()" method="post" enctype="text/plain">
 						<div class="row">
+				        	<div th:if="${module == 'payments' }">
+								<input type="hidden" 
+										   class="form-control" 
+										   ng-model="ctrl.launchType"
+										   ng-init="ctrl.launchType='PAYMENT'" />
+				        	</div>
+				        	<div th:if="${module == 'receipts' }" >
+								<input type="hidden" 
+										   class="form-control" 
+										   ng-model="ctrl.launchType"
+										   ng-init="ctrl.launchType='RECEIPT'"  />
+
+				        	</div>						
+									   
 							<div class="col-md-2">
-								<label>ID:</label>
+								<label>ID: </label>
 								<input type="text" 
 									   class="form-control" 
 									   ng-model="ctrl.launch.id" 
@@ -107,7 +127,7 @@
 							<span class="badge">{{ ctrl.launch.doneDate }}</span>
 						</div>
 						<div class="col-md-4"></div>
-						<div class="col-md-2 text-center">
+						<div class="col-md-2 text-center" ng-if="ctrl.launch.id != null">
 							<label>Situação:</label><br/>
 							<i ng-class="ctrl.classSituation( ctrl.launch )" aria-hidden="true" ng-click="ctrl.payLaunch( ctrl.launch.id )"></i>						
 						</div>
