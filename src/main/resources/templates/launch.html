@@ -76,7 +76,13 @@
 					<tbody>
 					   <tr ng-repeat = "launch in ctrl.listAll">
 					      <td class="col-md-1 text-center">{{ launch.id }}</td>
-					      <td>{{ launch.description }}</td>
+					      <td>
+					      	<a href="" class="btn btn-sm btn-default"
+					      		ng-click="ctrl.editLaunch( launch.id )"  
+								data-toggle="tooltip" data-placement="top" title="Editar Lançamento...">
+						      	{{ launch.description }}
+					      	</a>
+					      </td>
 					      <td class="col-md-1 text-center">
 					      	<span class="badge">{{ launch.maturityDate }}</span>
 					      </td>
@@ -87,7 +93,10 @@
 					      	{{ launch.bank.code +' - '+ launch.bank.name }}
 					      </td>
 					      <td class="col-md-1 text-center">	
-						  	<i ng-class="ctrl.classSituation( launch )" aria-hidden="true" ng-click="ctrl.payLaunch( launch.id )"></i>
+						  	<i ng-class="ctrl.classSituation( launch )" 
+						  	   data-toggle="tooltip" 
+						  	   data-placement="top" title="{{ launch.done ? 'Voltar Lançamento' : 'Pagar Lançamento' }}" 
+						  	   aria-hidden="true" ng-click="ctrl.payLaunch( launch.id )"></i>
 					      </td>
 					      <td class="col-md-2 text-center">
 								<a href="#" 
@@ -98,16 +107,10 @@
 								</a>
 								<a href="#" 
 								   class="btn btn-sm btn-default" 
-								   ng-click="ctrl.deleteLaunch( launch.id )"
+								   ng-click="ctrl.confirmDeleteLaunch( launch.id )"
 								   data-toggle="tooltip" data-placement="top" title="Deletar Lançamento..." >
 										<i class="fa fa-trash text-danger"></i>
-								</a>								
-								<a href="#" 
-								   class="btn btn-sm btn-default" 
-								   ng-click="ctrl.payLaunch( launch.id )"
-								   data-toggle="tooltip" data-placement="top" title="Pagar Lançamento..." >
-										<i class="fa fa-money text-success"></i>
-								</a>								
+								</a>															
 					      </td>
 					   </tr>					
 					</tbody>

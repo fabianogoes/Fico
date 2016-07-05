@@ -66,6 +66,21 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
         });		
 	}
 	
+	self.confirmDeleteLaunch = function( id ){
+		swal({   
+			title: "Confirmar?",   
+			text: "Atenção! Confirmar a exclusão do Lançamento.",   
+			type: "warning",   
+			showCancelButton: true, 
+			cancelButtonText: "Cancelar",
+			confirmButtonColor: "#DD6B55",   
+			confirmButtonText: "Confirmar",   
+			closeOnConfirm: false 
+		}, function(){   
+			self.deleteLaunch( id ); 
+		});
+	}
+	
 	self.deleteLaunch = function( id ){
 		var launchResponse = LaunchService.deleteLaunch( id ).success(function(response){
 			sweetAlert("OK", "Lançamento Deletado com sucesso!", "success");
