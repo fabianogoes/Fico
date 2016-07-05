@@ -48,7 +48,9 @@ public class LaunchService {
 	}
 
 	public List<Launch> findByType(LaunchType type) {
-		return this.launchRepository.findByType(type);
+		//return this.launchRepository.findByType(type);
+		Calendar dateNow = Calendar.getInstance();
+		return this.launchRepository.findByDoneFalseAndMaturityDateBefore(dateNow);
 	}
 
 }
