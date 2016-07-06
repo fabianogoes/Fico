@@ -5,27 +5,55 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 	self.init = function(){
 		self.launch = {};
 		self.bank = {};
-		self.listAllLaunch();
 		self.populateBanks();
+		self.listAllLaunch();
 		self.bankSelected = self.listBanks[0];
+		self.populateLates();
+		self.getLatePerc();
+		self.getDonePerc();
+		self.getWaitingPerc();
 	};
 	
 	self.launch = {};
 	self.bank = {};
 	self.listAll = [];
 	self.listBanks = [];
+	self.listLates = [];
 	self.bankSelected = null;
 	self.launchType = 'RECEIPT';
 	
+	self.donePerc = 0;
+	self.waitingPerc = 0;
+	self.latePerc = 0;
+	
 	self.listAllLaunch = function(){
 		console.log( 'listAllLaunch()...' );
-		
 		self.launchType = $("#typeId").val();
-		LaunchService.findByType( self.launchType ).then(function(response){
-			self.listAll = response.data;
-		});
+		if( self.launchType != null ){
+			LaunchService.findByType( self.launchType ).then(function(response){
+				self.listAll = response.data;
+			});
+		}
 	}
 		
+	self.getLatePerc = function(){
+		LaunchService.getLatePerc().then(function(response){
+			self.latePerc = response.data;
+		});		
+	}
+	
+	self.getDonePerc = function(){
+		LaunchService.getDonePerc().then(function(response){
+			self.donePerc = response.data;
+		});		
+	}
+	
+	self.getWaitingPerc = function(){
+		LaunchService.getWaitingPerc().then(function(response){
+			self.waitingPerc = response.data;
+		});		
+	}
+	
 	self.classSituation = function( launch ){
 		var classSituation = "";
 		if( launch.done == false && launch.late ){
@@ -44,6 +72,12 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		});
 	}
 	
+	self.populateLates = function(){
+		LaunchService.findLates().then(function(response){
+			self.listLates = response.data;
+		});
+	}
+	
 	self.postLaunch = function(){
 		self.launch.bank = self.bankSelected;
 		self.launch.type = self.launchType;
@@ -55,7 +89,7 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 			sweetAlert("OK", msg, "success");
 			return launchSaved;
 		}).success(function(bankSaved){
-			self.init();
+			self.init();			
 		}).error(function(data, status) {
 			sweetAlert("ERRO", data.message, "error");
         });

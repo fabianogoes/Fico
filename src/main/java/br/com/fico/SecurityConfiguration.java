@@ -42,26 +42,38 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-        .antMatchers("/login**").permitAll()
-        .antMatchers("/api**").permitAll() // TODO: implementar autenticação por API
-        .antMatchers("/css**").permitAll()
-        .antMatchers("/js**").permitAll()
-        .antMatchers("/img**").permitAll()
-        .antMatchers("/plugins**").permitAll()
-        .antMatchers("/login**").permitAll()
-        .antMatchers("/static/**").permitAll();
         
-        http.csrf().disable();
+    	http.authorizeRequests().antMatchers("/login**").permitAll();
+    	http.authorizeRequests().antMatchers("/api**").permitAll(); // TODO: implementar autenticação por API
+    	http.authorizeRequests().antMatchers("/css**").permitAll();
+    	http.authorizeRequests().antMatchers("/js**").permitAll();
+    	http.authorizeRequests().antMatchers("/img**").permitAll();
+    	http.authorizeRequests().antMatchers("/plugins**").permitAll();
+    	http.authorizeRequests().antMatchers("/static/**").permitAll();
         
-        http.formLogin().failureUrl("/login?error")
-                .defaultSuccessUrl("/")
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-                .permitAll();
+//        http.csrf().disable();
+        
+    	//http.authorizeRequests().anyRequest().authenticated();
+        http
+        	.csrf().disable()
+        	.formLogin().failureUrl("/login?error")
+            .defaultSuccessUrl("/")
+            .loginPage("/login")
+            .permitAll()
+            .and()
+            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+            .permitAll();
     }
+    
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring()
+//	        .antMatchers("/login")
+//        	.antMatchers("/css**")
+//        	.antMatchers("/js**")
+//        	.antMatchers("/img**")
+//        	.antMatchers("/plugins**");
+//    }    
  
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

@@ -7,7 +7,7 @@ mainApp.factory('BankService', [ '$http', function($http) {
 	var rootUrlBank = APP_NAME + '/api/bank';
 	
 	var _findAll = function( launchType ){
-		return $http.get( rootUrlBank + '/type/' + launchType );
+		return $http.get( rootUrlBank );
 	}	
 	
 	var _createBank = function( bank ){

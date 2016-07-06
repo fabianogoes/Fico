@@ -38,6 +38,30 @@ public class LaunchRestController {
 		return launchService.findByType( type );
 	}
 	
+	@RequestMapping(value="/lates")
+	public List<Launch> getByLate() {
+		System.out.println("getByLate( )");
+		return launchService.findByLate();
+	}
+	
+	@RequestMapping(value="/lates/perc")
+	public Float getByLatePerc() {
+		System.out.println("getByLatePerc( )");
+		return launchService.getByLatePerc();
+	}
+	
+	@RequestMapping(value="/done/perc")
+	public Float getByDonePerc() {
+		System.out.println("getByDonePerc( )");
+		return launchService.getByDonePerc();
+	}
+	
+	@RequestMapping(value="/waiting/perc")
+	public Float getByWaitingPerc() {
+		System.out.println("getByWaitingPerc( )");
+		return launchService.getByWaitingPerc();
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public Launch create(@RequestBody Launch launch) {
 		System.out.println("post( " + launch + " )");

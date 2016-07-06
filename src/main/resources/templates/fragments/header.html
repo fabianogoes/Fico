@@ -19,28 +19,16 @@
 		        </div>
 		        <div id="navbar" class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
+					<li class="dropdown" ng-controller="LaunchController as ctrl">
 			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			          		<img src="../../static/img/alert.png" th:src="@{/img/alert.png}" width="30" height="30" class="img-circle" alt="Alertas"/>
-			          		<span class="text-danger">3</span>&nbsp;<span class="caret"></span>
+			          		<span class="text-danger">{{ ctrl.listLates.length }}</span>&nbsp;<span class="caret"></span>
 			          	</a>
-			          <ul class="dropdown-menu">
-			            <li>
+			          <ul class="dropdown-menu" >
+			            <li ng-repeat="launch in ctrl.listLates">
 			            	<a href="#">
 			            		<img src="../../static/img/bell.png" th:src="@{/img/bell.png}" width="20" height="20" alt="Alertas"/>&nbsp;
-			            		Alert 1...
-			            	</a>
-			            </li>
-			            <li>
-			            	<a href="#">
-			            		<img src="../../static/img/bell.png" th:src="@{/img/bell.png}" width="20" height="20" alt="Alertas"/>&nbsp;
-			            		Alert 2...
-			            	</a>
-			            </li>
-			            <li>
-			            	<a href="#">
-			            		<img src="../../static/img/bell.png" th:src="@{/img/bell.png}" width="20" height="20" alt="Alertas"/>&nbsp;
-								Alert 3...
+			            		{{ launch.description +' - '+ launch.maturityDate }}
 			            	</a>
 			            </li>
 			          </ul>

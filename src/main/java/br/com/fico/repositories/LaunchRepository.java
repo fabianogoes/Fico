@@ -14,5 +14,7 @@ public interface LaunchRepository extends CrudRepository<Launch, Long> {
 
 	List<Launch> findByType(LaunchType type);
 	List<Launch> findByDoneFalseAndMaturityDateBefore(Calendar maturityDate);
+	List<Launch> findByDoneFalseAndMaturityDateAfter(Calendar maturityDate);
+	List<Launch> findByDoneTrue();
 	
 }
