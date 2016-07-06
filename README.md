@@ -1,7 +1,7 @@
 # Fico
 
 ---
-title: Fico - Financial control System
+title: "Fico - Financial control System"
 author: 
    - Author Fabiano Góes
 institute: 
