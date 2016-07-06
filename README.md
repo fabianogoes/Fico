@@ -14,10 +14,6 @@
 
 ### Database
 ```sql
-CREATE USER 'adminA28iIul'@'localhost' IDENTIFIED BY 'SVaVThtuYqCT';
-GRANT ALL PRIVILEGES ON * . * TO 'adminA28iIul'@'localhost';
-FLUSH PRIVILEGES;
-
 CREATE DATABASE fico CHARACTER SET utf8 COLLATE utf8_bin;
 ```   
 
@@ -28,21 +24,21 @@ create table users (username varchar(50) not null primary key, password varchar(
 
 2. Populate Data Basic   
 ```sql
-insert into Category(name) values('Alimentação');
-insert into Category(name) values('Lazer');
-insert into Category(name) values('Moradia');
-insert into Category(name) values('Salário');
-insert into Category(name) values('Saúde');
-insert into Category(name) values('Transporte');
-insert into Category(name) values('Combustível');
-insert into Category(name) values('Outros');
+insert into category(name) values('Alimentação');
+insert into category(name) values('Lazer');
+insert into category(name) values('Moradia');
+insert into category(name) values('Salário');
+insert into category(name) values('Saúde');
+insert into category(name) values('Transporte');
+insert into category(name) values('Combustível');
+insert into category(name) values('Outros');
 
-insert into Bank(code, name) values('001', 'Banco do Brasil');
-insert into Bank(code, name) values('033', 'Banco Santander');
-insert into Bank(code, name) values('104', 'Caixa Econômica Federal');
-insert into Bank(code, name) values('237', 'Bradesco');
-insert into Bank(code, name) values('341', 'Itaú');
-insert into Bank(code, name) values('399', 'HSBC');
+insert into bank(code, name) values('001', 'Banco do Brasil');
+insert into bank(code, name) values('033', 'Banco Santander');
+insert into bank(code, name) values('104', 'Caixa Econômica Federal');
+insert into bank(code, name) values('237', 'Bradesco');
+insert into bank(code, name) values('341', 'Itaú');
+insert into bank(code, name) values('399', 'HSBC');
 ```   
 
 

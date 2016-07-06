@@ -5,7 +5,7 @@
 
 	<groupId>br.com.fico</groupId>
 	<artifactId>fico</artifactId>
-	<version>1.0.20160706</version>
+	<version>1.0.20160706.1</version>
 	<packaging>war</packaging>
 
 	<name>Fico</name>
@@ -20,7 +20,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 	</properties>
 
 	<dependencies>
@@ -89,14 +89,15 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version><!--$NO-MVN-MAN-VER$-->
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 
