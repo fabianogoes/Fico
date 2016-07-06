@@ -109,7 +109,7 @@
 					      <td class="col-md-1 text-center">	
 						  	<i ng-class="ctrl.classSituation( launch )" 
 						  	   data-toggle="tooltip" 
-						  	   data-placement="top" title="{{ launch.done ? 'Voltar Lançamento' : 'Pagar Lançamento' }}" 
+						  	   data-placement="top" title="{{ ctrl.titleSituation( launch ) }}" 
 						  	   aria-hidden="true" ng-click="ctrl.payLaunch( launch.id )"></i>
 					      </td>
 					      <td class="col-md-2 text-center">

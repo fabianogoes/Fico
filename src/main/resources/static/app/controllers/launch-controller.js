@@ -67,13 +67,25 @@ mainApp.controller('LaunchController', ['BankService', 'CategoryService', 'Launc
 	self.classSituation = function( launch ){
 		var classSituation = "";
 		if( launch.done == false && launch.late ){
-			classSituation = "fa fa-thumbs-o-down fa-2x text-danger";
+			classSituation = "fa fa-bell-o fa-2x text-danger";
 		}else if( launch.done == false && launch.late == false ){
 			classSituation = "fa fa-clock-o fa-2x text-default";
 		}else{
 			classSituation = "fa fa-thumbs-o-up fa-2x text-success";
 		}
 		return classSituation;
+	}
+	
+	self.titleSituation = function( launch ){
+		var titleSituation = "";
+		if( launch.done == false && launch.late ){
+			titleSituation = "Atenção, Lançamento Atrasado!";
+		}else if( launch.done == false && launch.late == false ){
+			titleSituation = "Lançamento aguardando pagamento";
+		}else{
+			titleSituation = "Lançamento Pago!";
+		}
+		return titleSituation;
 	}
 	
 	self.postLaunch = function(){
