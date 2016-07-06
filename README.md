@@ -1,22 +1,13 @@
 # Fico
 
----
-title: "Fico - Financial control System"
-author: 
-   - Author Fabiano Góes
-institute: 
-   - Guarulhos, SP, Brasil
-date: "Saturday, July 01, 2016"
----
-
 |                  |                            |
 |------------------|----------------------------|
+| **Title**        | Fico                       |
+| **Description**  | Financial Control System   |
 | **Author:**      | [Fabiano Góes][23]         |
 | **Date:**        | Saturday, July 01, 2016    |
-| **Locale:**      | Guarulhos, SP, Brasil      |
+| **Locale:**      | Guarulhos, SP, Brasil      |      
 
-
-### Financial control System   
 ![Fico][4]
 
 ### Setup Development  
