@@ -62,6 +62,7 @@ Libraries / Tools
 * [JQueryUI][8]
 * [AngularJS][6]
 * [SweetAlert][5]
+* [Shippable CI][24]
 
 License
 -------
@@ -96,3 +97,4 @@ Open Source
 [21]: http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html
 [22]: https://pt.wikipedia.org/wiki/HTML
 [23]: http://fabianogoes.github.io/
+[24]: shippable.com
