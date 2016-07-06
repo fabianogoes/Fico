@@ -10,12 +10,17 @@ jdk:
 
 before_install:
     - sudo apt-get update
+    - sudo apt-get install ruby-full
+    - sudo apt-get install rubygems
+    - sudo apt-get install git-core
+    - sudo gem install rhc
 #    - sudo apt-get install sshpass
 
 # Buil
 build:
   ci:
     - java -version
+    - ruby -e 'puts "Welcome to Ruby"'
     #- mvn clean package -Dmaven.test.skip=true
     - git clone ssh://577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com/~/git/sys.git/ openshift
     #- mvn tomcat7:redeploy -Dmaven.test.skip=true
