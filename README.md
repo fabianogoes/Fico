@@ -12,6 +12,15 @@
 
 ### Setup Development  
 
+### Database
+```sql
+CREATE USER 'adminA28iIul'@'localhost' IDENTIFIED BY 'SVaVThtuYqCT';
+GRANT ALL PRIVILEGES ON * . * TO 'adminA28iIul'@'localhost';
+FLUSH PRIVILEGES;
+
+CREATE DATABASE fico CHARACTER SET utf8 COLLATE utf8_bin;
+```   
+
 1. Create Table Security    
 ```sql
 create table users (username varchar(50) not null primary key, password varchar(255) not null,    enabled boolean not null) engine = InnoDb;create table authorities (    username varchar(50) not null,    authority varchar(50) not null,    foreign key (username) references users (username),    unique index authorities_idx_1 (username, authority)) engine = InnoDb;
@@ -28,7 +37,12 @@ insert into Category(name) values('Transporte');
 insert into Category(name) values('Combustível');
 insert into Category(name) values('Outros');
 
-
+insert into Bank(code, name) values('001', 'Banco do Brasil');
+insert into Bank(code, name) values('033', 'Banco Santander');
+insert into Bank(code, name) values('104', 'Caixa Econômica Federal');
+insert into Bank(code, name) values('237', 'Bradesco');
+insert into Bank(code, name) values('341', 'Itaú');
+insert into Bank(code, name) values('399', 'HSBC');
 ```   
 
 

@@ -26,4 +26,5 @@ public class ServletInitializer extends SpringBootServletInitializer {
       filter.setForceEncoding(true);
       return filter;
     }	
+    
 }
