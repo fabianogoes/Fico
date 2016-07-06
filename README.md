@@ -2,6 +2,13 @@
 ### Financial control System   
 ![Fico][4]
 
+title: Fico - Financial control System
+author: 
+   - Author Fabiano Góes
+institute: 
+   - Guarulhos, SP, Brasil
+date: "Saturday, July 01, 2016"
+
 ### Setup Development  
 
 1. Create Table Security    
