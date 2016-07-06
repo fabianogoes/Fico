@@ -48,12 +48,10 @@ public class FicoApplication extends WebMvcConfigurerAdapter {
 		 *	
 		 *     Root User    : admintfpcZ4w
 		 *	   Root Password: ct-I6cSv9uBb
-		 *	   Database Name: sys
+		 *	   Database Name: fico
+		 *
+		 *     OPENSHIFT_MYSQL_DB_URL = mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
 		 *	
-		 *	Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
-		 *	
-		 *	You can manage your new MySQL database by also embedding phpmyadmin.
-		 *	The phpmyadmin username and password will be the same as the MySQL credentials above.    	 
     	 **********************************************************************************************/
     	
     	String host = System.getenv().get("OPENSHIFT_MYSQL_DB_HOST") == null ? "localhost" : System.getenv().get("OPENSHIFT_MYSQL_DB_HOST");
@@ -61,7 +59,8 @@ public class FicoApplication extends WebMvcConfigurerAdapter {
     	String database = "fico";
     	String user = System.getenv().get("OPENSHIFT_MYSQL_DB_USERNAME") == null ? "root" : System.getenv().get("OPENSHIFT_MYSQL_DB_USERNAME");
     	String password = System.getenv().get("OPENSHIFT_MYSQL_DB_PASSWORD") == null ? "root" : System.getenv().get("OPENSHIFT_MYSQL_DB_PASSWORD");
-    	String url = System.getenv().get("OPENSHIFT_MYSQL_DB_URL") == null ? "jdbc:mysql://"+host+":"+port+"/"+database : System.getenv().get("OPENSHIFT_MYSQL_DB_URL");
+    	//String url = System.getenv().get("OPENSHIFT_MYSQL_DB_URL") == null ? "jdbc:mysql://"+host+":"+port+"/"+database : "jdbc:"+System.getenv().get("OPENSHIFT_MYSQL_DB_URL");
+    	String url = "jdbc:mysql://"+host+":"+port+"/"+database;
     	
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
             dataSourceBuilder.url(url);
