@@ -64,21 +64,30 @@ public class LaunchService {
 	public float getByLatePerc() {
 		int latesCount = this.findByLate().size();
 		int allCount = this.findAll().size();
-		float latePerc = (float)((latesCount * 100) / allCount);
+		float latePerc = 0;
+		if( allCount > 0 ){
+			latePerc = (float)((latesCount * 100) / allCount);
+		}
 		return latePerc;
 	}
 
 	public Float getByDonePerc() {
 		int doneCount = this.launchRepository.findByDoneTrue().size();
 		int allCount = this.findAll().size();
-		float latePerc = (float)((doneCount * 100) / allCount);
+		float latePerc = 0;
+		if( allCount > 0){
+			latePerc = (float)((doneCount * 100) / allCount);
+		}
 		return latePerc;
 	}
 
 	public Float getByWaitingPerc() {
 		int waitingCount = this.findByWaiting().size();
 		int allCount = this.findAll().size();
-		float latePerc = (float)((waitingCount * 100) / allCount);
+		float latePerc = 0;
+		if( allCount > 0 ){
+			latePerc = (float)((waitingCount * 100) / allCount);
+		}
 		return latePerc;
 	}
 

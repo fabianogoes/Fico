@@ -6,8 +6,21 @@
 
 1. Create Table Security    
 ```sql
-create table users (    username varchar(50) not null primary key,    password varchar(255) not null,    enabled boolean not null) engine = InnoDb;create table authorities (    username varchar(50) not null,    authority varchar(50) not null,    foreign key (username) references users (username),    unique index authorities_idx_1 (username, authority)) engine = InnoDb;
+create table users (username varchar(50) not null primary key, password varchar(255) not null,    enabled boolean not null) engine = InnoDb;create table authorities (    username varchar(50) not null,    authority varchar(50) not null,    foreign key (username) references users (username),    unique index authorities_idx_1 (username, authority)) engine = InnoDb;
 ```   
+
+1. Populate Data Basic   
+```sql
+insert into Category(name) values('Alimentação');
+insert into Category(name) values('Lazer');
+insert into Category(name) values('Moradia');
+insert into Category(name) values('Salário');
+insert into Category(name) values('Saúde');
+insert into Category(name) values('Transporte');
+insert into Category(name) values('Combustível');
+insert into Category(name) values('Outros');
+```   
+
 
 Libraries
 ---------

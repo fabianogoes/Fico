@@ -1,11 +1,12 @@
 // mainApp é uma variavel global no arquivo mainApp.js
-mainApp.controller('LaunchController', ['BankService', 'LaunchService', function(BankService, LaunchService){
+mainApp.controller('LaunchController', ['BankService', 'CategoryService', 'LaunchService', function(BankService, CategoryService, LaunchService){
 	
 	var self = this;
 	self.init = function(){
 		self.launch = {};
 		self.bank = {};
 		self.populateBanks();
+		self.populateCategories();
 		self.listAllLaunch();
 		self.bankSelected = self.listBanks[0];
 		self.populateLates();
@@ -16,10 +17,13 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 	
 	self.launch = {};
 	self.bank = {};
+	self.category = {};
 	self.listAll = [];
 	self.listBanks = [];
+	self.listCategories = [];
 	self.listLates = [];
 	self.bankSelected = null;
+	self.categorySelected = null;
 	self.launchType = 'RECEIPT';
 	
 	self.donePerc = 0;
@@ -54,6 +58,12 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		});		
 	}
 	
+	self.populateLates = function(){
+		LaunchService.findLates().then(function(response){
+			self.listLates = response.data;
+		});
+	}	
+	
 	self.classSituation = function( launch ){
 		var classSituation = "";
 		if( launch.done == false && launch.late ){
@@ -66,20 +76,9 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		return classSituation;
 	}
 	
-	self.populateBanks = function(){
-		BankService.findAll().then(function(response){
-			self.listBanks = response.data;
-		});
-	}
-	
-	self.populateLates = function(){
-		LaunchService.findLates().then(function(response){
-			self.listLates = response.data;
-		});
-	}
-	
 	self.postLaunch = function(){
 		self.launch.bank = self.bankSelected;
+		self.launch.category = self.categorySelected;
 		self.launch.type = self.launchType;
 		console.log( self.launch );
 		var launchResponse = LaunchService.postLaunch( self.launch ).success(function(launchSaved){
@@ -99,6 +98,7 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		var launchResponse = LaunchService.findLaunch( id ).success(function(launchFind){
 			self.launch = launchFind;
 			self.bankSelected = self.launch.bank;
+			self.categorySelected = self.launch.category;
 			self.showLaunchFormModal( 'edit' );
 		}).error(function(data, status) {
 			sweetAlert("ERRO", data.message, "error");
@@ -145,6 +145,13 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		});
 	}	
 	
+	
+	self.populateBanks = function(){
+		BankService.findAll().then(function(response){
+			self.listBanks = response.data;
+		});
+	}	
+	
 	self.createBank = function(){
 		console.log( self.bank )
 		var bankResponse = BankService.createBank( self.bank ).success(function(bankSaved){
@@ -159,6 +166,29 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 		}).error(function(data, status) {
 			sweetAlert("ERRO", data.message, "error");
         });
+	}	
+		
+	self.populateCategories = function(){
+		CategoryService.findAll().then(function(response){
+			self.listCategories = response.data;
+		});
+	}	
+	
+	self.createCategory = function(){
+		console.log( self.category )
+		var categoryResponse = CategoryService.createCategory( self.category ).success(function(categorySaved){
+			self.categorySelected = categorySaved;
+			console.log( self.categorySelected );
+			sweetAlert("OK", "Categoria["+categorySaved.name+"] salvo com sucesso!", "success");
+			return categorySaved;
+		}).success(function(categorySaved){
+			self.populateCategories();
+			self.categorySelected = categorySaved;
+			self.category = {};
+			self.hideCategoryModal();
+		}).error(function(data, status) {
+			sweetAlert("ERRO", data.message, "error");
+		});
 	}	
 	
 	self.showLaunchFormModal = function(action){
@@ -180,6 +210,16 @@ mainApp.controller('LaunchController', ['BankService', 'LaunchService', function
 	self.hideBankModal = function(){
 		$('#modalLaunch').modal('show');
 		$('#modalBank').modal('hide');
+	}
+	
+	self.showCategoryModal = function(){
+		$('#modalLaunch').modal('hide');
+		$('#modalCategory').modal('show');
+	}
+	
+	self.hideCategoryModal = function(){
+		$('#modalLaunch').modal('show');
+		$('#modalCategory').modal('hide');
 	}
 	
 	self.init();

@@ -68,10 +68,11 @@
 					<thead>
 						<tr>
 							<th class="col-md-1 text-center">ID</th>
-							<th>Descrição</th>
+							<th class="col-md-3">Descrição</th>
 							<th class="col-md-1 text-center">Vencimento</th>
 							<th class="col-md-2 text-center">Valor</th>
-							<th class="col-md-2 text-center">Banco</th>
+							<th class="col-md-1 text-center">Categoria</th>
+							<th class="col-md-1 text-center">Banco</th>
 							<th class="col-md-1 text-center">Situação</th>
 							<th class="col-md-2 text-center">
 								<a href="#" 
@@ -96,11 +97,14 @@
 					      <td class="col-md-1 text-center">
 					      	<span class="badge">{{ launch.maturityDate }}</span>
 					      </td>
-					      <td class="col-md-2 text-center">
+					      <td class="col-md-1 text-center">
 					      	{{ 'R$ ' + launch.amount }}
 					      </td>
 					      <td class="col-md-2 text-center">
-					      	{{ launch.bank.code +' - '+ launch.bank.name }}
+					      	{{ launch.category.name }}
+					      </td>
+					      <td class="col-md-1 text-center">
+					      	{{ launch.bank.code }}
 					      </td>
 					      <td class="col-md-1 text-center">	
 						  	<i ng-class="ctrl.classSituation( launch )" 
@@ -140,9 +144,10 @@
     
 	<!--/*/ <th:block th:include="fragments/footerjsinc :: footerjsinc"></th:block>  /*/-->
 	<script type="text/javascript" src="../static/app/services/bank-service.js" th:src="@{/app/services/bank-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/services/category-service.js" th:src="@{/app/services/category-service.js}" ></script>
 	<script type="text/javascript" src="../static/app/services/launch-service.js" th:src="@{/app/services/launch-service.js}" ></script>
-	<script type="text/javascript" src="../static/app/controllers/launch-controller.js" th:src="@{/app/controllers/launch-controller.js}" ></script>
 	<script type="text/javascript" src="../static/app/controllers/bank-controller.js" th:src="@{/app/controllers/bank-controller.js}" ></script>
+	<script type="text/javascript" src="../static/app/controllers/launch-controller.js" th:src="@{/app/controllers/launch-controller.js}" ></script>
 	
 </body>
 </html>

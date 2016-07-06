@@ -70,6 +70,9 @@ public class Launch implements Serializable {
 	private Boolean done = false;
 
 	@ManyToOne(optional = false)
+	private Category category;
+	
+	@ManyToOne
 	private Bank bank;
 
 	@Transient
@@ -80,7 +83,7 @@ public class Launch implements Serializable {
 	}
 
 	public Launch(Long id, String description, Calendar createdDate, Calendar doneDate, Calendar maturityDate,
-			BigDecimal amount, Boolean done, LaunchType type) {
+			BigDecimal amount, Boolean done, LaunchType type, Category category) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -90,20 +93,22 @@ public class Launch implements Serializable {
 		this.amount = amount;
 		this.done = done;
 		this.type = type;
+		this.category = category;
 	}
 
-	public Launch(Long id, String description, BigDecimal amount, Bank bank, LaunchType type) {
+	public Launch(Long id, String description, BigDecimal amount, Bank bank, LaunchType type, Category category) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.amount = amount;
 		this.type = type;
 		this.bank = bank;
+		this.category = category;
 	}
 
 	public Launch(Long id, String description, Calendar createdDate, Calendar doneDate, Calendar maturityDate,
-			BigDecimal amount, Boolean done, Bank bank, LaunchType type) {
-		this(id, description, createdDate, doneDate, maturityDate, amount, done, type);
+			BigDecimal amount, Boolean done, Bank bank, LaunchType type, Category category) {
+		this(id, description, createdDate, doneDate, maturityDate, amount, done, type, category);
 		this.id = id;
 		this.description = description;
 		this.createdDate = createdDate;
@@ -221,12 +226,20 @@ public class Launch implements Serializable {
 		return true;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "Launch [id=" + id + ", description=" + description + ", createdDate="
 				+ DateTimeHelper.toDate(createdDate) + ", doneDate=" + DateTimeHelper.toDate(doneDate)
 				+ ", maturityDate=" + DateTimeHelper.toDate(maturityDate) + ", amount=" + amount + ", done=" + done
-				+ ", bank=" + bank + "]";
+				+ ", bank=" + bank + ", category=" + category + "]";
 	}
 
 }
