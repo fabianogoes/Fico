@@ -9,6 +9,13 @@ institute:
 date: "Saturday, July 01, 2016"
 ---
 
+|                  |                            |
+|------------------|----------------------------|
+| **Author:**      | [Fabiano Góes][23]         |
+| **Date:**        | Saturday, July 01, 2016    |
+| **Locale:**      | Guarulhos, SP, Brasil      |
+
+
 ### Financial control System   
 ![Fico][4]
 
@@ -87,3 +94,4 @@ Open Source
 [20]: http://hibernate.org/
 [21]: http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html
 [22]: https://pt.wikipedia.org/wiki/HTML
+[23]: http://fabianogoes.github.io/
