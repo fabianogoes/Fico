@@ -5,7 +5,7 @@
 
 	<groupId>br.com.fico</groupId>
 	<artifactId>fico</artifactId>
-	<version>1.0.20160701</version>
+	<version>1.0.20160706</version>
 	<packaging>war</packaging>
 
 	<name>Fico</name>
@@ -80,6 +80,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>fico</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
