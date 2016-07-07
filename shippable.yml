@@ -6,7 +6,7 @@ jdk:
 before_install:
     - sudo apt-get update
     - sudo apt-get install ruby-full
-    sudo apt-get install rubygems-integration
+    - sudo apt-get install rubygems-integration
     #- sudo apt-get install rubygems
     #- sudo apt-get install git-core
     #- sudo gem install rhc
