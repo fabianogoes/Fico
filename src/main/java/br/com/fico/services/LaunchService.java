@@ -58,7 +58,7 @@ public class LaunchService {
 	
 	public List<Launch> findByWaiting() {
 		Calendar dateNow = Calendar.getInstance();
-		return this.launchRepository.findByDoneFalseAndMaturityDateAfter(dateNow);
+		return this.launchRepository.findByDoneFalseAndMaturityDateGreaterThanEqual(dateNow);
 	}
 
 	public float getByLatePerc() {

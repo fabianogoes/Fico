@@ -1,28 +1,20 @@
-# Language setting
 language: java
 
-# Version number
 jdk:
-#  - openjdk6
-#  - openjdk7
   - oraclejdk7
-#  - oraclejdk8
 
 before_install:
     - sudo apt-get update
     - sudo apt-get install ruby-full
-    - sudo apt-get install rubygems
-    - sudo apt-get install git-core
-    - sudo gem install rhc
-#    - sudo apt-get install sshpass
+    #- sudo apt-get install rubygems
+    #- sudo apt-get install git-core
+    #- sudo gem install rhc
 
-# Buil
 build:
   ci:
     - java -version
-    - ruby -e 'puts "Welcome to Ruby"'
+    - ruby -v
     #- mvn clean package -Dmaven.test.skip=true
-    - git clone ssh://577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com/~/git/sys.git/ openshift
-    #- mvn tomcat7:redeploy -Dmaven.test.skip=true
-    #- scp target/tkgfrotas.war deployer@198.211.114.115:/etc/apache-tomcat-7.0.68/webapps
-    #- /usr/bin/sshpass -p "tk@2016" scp target/tkgfrotas.war root@198.211.114.115:/etc/apache-tomcat-7.0.68/webapps
+    #- git clone ssh://577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com/~/git/sys.git/ openshift
+
+
