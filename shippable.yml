@@ -18,6 +18,6 @@ build:
     - java -version
     - ruby -v
     #- mvn clean package -Dmaven.test.skip=true
-    #- git clone ssh://577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com/~/git/sys.git/ openshift
+    - git clone ssh://577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com/~/git/sys.git/ openshift
 
 
