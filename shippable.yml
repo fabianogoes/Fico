@@ -12,8 +12,10 @@ before_install:
     - git config --global user.name "Codeforse CI"
     - git config --global user.email codeforse@gmail.com
     - sudo echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDax5AOu7zaRnhFyCm7y5lc+TciTl3jLnWcuJuDIS2zlK8S1hmZt/E6Cm0Wcg4GuFQasLCyFfzHAzv+ktsEJs1ib+nyyBhXkD4kr+h1CnrGGaYk58th2zv6mFC00897jKRI/FlB6251Nlw4DX+6IFJqUwl5MvwxuBjv2sYrnLgu17cGfkVkZMMNk+s1Hvu6dTOlQ+pZ87xbGUtm2emIsCzk0TcE7BkoJK0kZh/q/HiWqBzlEVGTo5eQizsf/ZnNKLd6ctAReHyJ0aulZXDN/Exe+W/H1xJgBZxp3IMVKyYj3C7N+lIU/zoM5AooSQL1EbD/5cchI/w2rvHzu9LMRu7ql/9Fc6QBBpY0gZk32eT++74b0pgqsaiXnH+ixszGdI9mHj3Sf/G9bvZlpHCeLWcup0iSyJ/M3/PVcsV+bKEk6whG1xGB4kJmf9mcd6o08d/OYLdKbYIcC1cpOTZCafHuDpTSlj+dHfgfGJSGzD1FXbcQOSYNRygt5HZZuF8LL1PRVusR7HikAFPtb1lXxAnM3LubG4qMUpLigqrkDQPHiou8jXX8X/r9qu4Noaq5Y90Pd2b1eAUMNlvHmznxAZKpstYOkRMC8guZAAW/9rj7vBbuInAjm9oPMwhf5ywskfYFUo+A9sIWoMyvRKowxMayAHY6kRvrrXQwxwzf1Z9fzQ== codeforse@gmail.com' >> ~/.ssh/id_rsa.pub
+    - cat ~/.ssh/id_rsa.pub
     - sudo touch ~/.ssh/known_hosts
     - sudo echo 'sys-codeforse.rhcloud.com,52.90.82.135 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwUPkUQ84FKIWhOxy5RBBuR9gbrov2epARmFmaxD7NFRayobnDvl8GaBTbH1kxaZ/tYQeIqVE1assL74KArMQBzz6rj0FEWf0zrXxAY55EGswmWEEdqlYu1LbIxDCG6opqkiq6ocxjea9K3XYq+2aYoAvI3sshSImTYZP1glFhrh3QUsNJHOfDboTLJFNSdLjzXubRMa4eEx7s9pe9kwBOaLNIiVeGzUWg5+KaykSg2UMB3aG127t8kX+OhDYceVR42ehQJ0MjQGlGoNtldxGrlX8NjxUqvJAo6pqNqRK8Cps7/x/m0GPXWAgSZymhurXmj1o2LP5nKLtVzMPvwMb0w==' >> ~/.ssh/known_hosts
+    - cat ~/.ssh/known_hosts
     - java -version
 
 build:
