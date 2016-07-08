@@ -5,7 +5,7 @@
 
 	<groupId>br.com.fico</groupId>
 	<artifactId>fico</artifactId>
-	<version>1.0.20160708.1</version>
+	<version>1.0.20160708.2</version>
 	<packaging>war</packaging>
 
 	<name>Fico</name>
