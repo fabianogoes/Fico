@@ -3,6 +3,12 @@ language: java
 jdk:
   - oraclejdk7
 
+notifications:
+  email:
+    - fabianogoes@gmail.com
+  on_success: always
+  on_failure: always
+
 before_install:
     #- sudo apt-get update
     #- sudo apt-get install ruby-full
@@ -26,7 +32,7 @@ build:
     - git clone ssh://577f0acd2d52716dd2000173@app-codeforse.rhcloud.com/~/git/app.git/
     - ls -la app/
     - cp target/fico.war app/webapps/
-    - ls -la webapps/
+    - ls -la app/webapps/
     - git pull
     - git add .
     - git commit -am 'deploy by shippable ci'
