@@ -37,6 +37,6 @@ build:
     - git pull
     - git add .
     - git commit -am 'deploy by shippable ci'
-    - git push
+    - git push origin master
 
 
