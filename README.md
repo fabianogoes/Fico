@@ -1,12 +1,12 @@
 # Fico
 
-| CI by Shippable  | [![Run Status](https://api.shippable.com/projects/5721560b2a8192902e1e3146/badge?branch=master)](https://app.shippable.com/projects/5721560b2a8192902e1e3146)                           |
+| Title            | Fico                       |
 |------------------|----------------------------|
-| **Title**        | Fico                       |
 | **Description**  | Financial Control System   |
 | **Author:**      | [Fabiano Góes][23]         |
 | **Date:**        | Saturday, July 01, 2016    |
-| **Locale:**      | Guarulhos, SP, Brasil      |      
+| **Locale:**      | Guarulhos, SP, Brasil      |
+| **CI**           | [![Run Status](https://api.shippable.com/projects/577d64723be4f4faa56bfb60/badge?branch=master)](https://app.shippable.com/projects/577d64723be4f4faa56bfb60)  |
 
 ![Fico][4]
 
