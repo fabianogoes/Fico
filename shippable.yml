@@ -21,12 +21,12 @@ before_install:
 
 build:
   ci:
-    #- mvn clean package -Dmaven.test.skip=true
+    - mvn clean package -Dmaven.test.skip=true
     - git clone ssh://577f0acd2d52716dd2000173@app-codeforse.rhcloud.com/~/git/app.git/
-    #- cp target/fico.war sys/
-    - cd app/ && ls -la
+    - ls -la target/
+    - cp target/fico.war app/webapps/
+    - ls -la webapps/
     - git pull
-    - touch deploy && echo 1.0 >> deploy
     - git add .
     - git commit -am 'deploy by shippable ci'
     - git push
