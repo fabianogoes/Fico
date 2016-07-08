@@ -1,6 +1,6 @@
 # Fico
 
-|                  |                            |
+| CI by Shippable  | [![Run Status](https://api.shippable.com/projects/5721560b2a8192902e1e3146/badge?branch=master)](https://app.shippable.com/projects/5721560b2a8192902e1e3146)                           |
 |------------------|----------------------------|
 | **Title**        | Fico                       |
 | **Description**  | Financial Control System   |
