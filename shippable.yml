@@ -21,10 +21,12 @@ before_install:
 
 build:
   ci:
-    - mvn clean package -Dmaven.test.skip=true
-    - git clone ssh://577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com/~/git/sys.git/ openshift
-    - cp target/fico.war openshift/
-    - cd openshift/
+    #- mvn clean package -Dmaven.test.skip=true
+    - git clone ssh://577f0acd2d52716dd2000173@app-codeforse.rhcloud.com/~/git/app.git/
+    #- cp target/fico.war sys/
+    - cd app/ && ls -la
+    - git pull
+    #- touch deploy && echo 1.0 >> deploy
     - git add .
     - git commit -am 'deploy by shippable ci'
     - git push

@@ -39,20 +39,21 @@ public class FicoApplication extends WebMvcConfigurerAdapter {
     	 * OpenShift Details
     	 **********************************************************************************************
     	 * app root         : sys-codeforse.rhcloud.com
-    	 * final deploy Fico: sys-codeforse.rhcloud.com/fico 
-    	 * Souce Code Git   : ssh://577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com/~/git/sys.git/
-    	 * Remote Access    : ssh 577d479d2d5271b1bd0001c3@sys-codeforse.rhcloud.com
+    	 * final deploy Fico: app-codeforse.rhcloud.com/fico 
+    	 * Souce Code Git   : ssh://577f0acd2d52716dd2000173@app-codeforse.rhcloud.com/~/git/app.git/
+    	 * Remote Access    : ssh 577f0acd2d52716dd2000173@app-codeforse.rhcloud.com
     	 **********************************************************************************************
-    	 * MySQL 5.5 database added.  Please make note of these credentials:
-    	 **********************************************************************************************
-		 *	
-		 *     Root User    : admintfpcZ4w
-		 *	   Root Password: ct-I6cSv9uBb
-		 *	   Database Name: fico
-		 *
-		 *     OPENSHIFT_MYSQL_DB_URL = mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
-		 *	
-    	 **********************************************************************************************/
+		MySQL 5.5 database added.  Please make note of these credentials:
+
+		   Root User: adminKg3v269
+		   Root Password: nqUukwxwdlHA
+		   Database Name: app
+
+		Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
+
+		You can manage your new MySQL database by also embedding phpmyadmin.
+		The phpmyadmin username and password will be the same as the MySQL credentials above.
+	 **********************************************************************************************/
     	
     	String host = System.getenv().get("OPENSHIFT_MYSQL_DB_HOST") == null ? "localhost" : System.getenv().get("OPENSHIFT_MYSQL_DB_HOST");
     	String port = System.getenv().get("OPENSHIFT_MYSQL_DB_PORT") == null ? "3306" : System.getenv().get("OPENSHIFT_MYSQL_DB_PORT");
