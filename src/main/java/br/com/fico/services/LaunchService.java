@@ -91,4 +91,8 @@ public class LaunchService {
 		return latePerc;
 	}
 
+	public List<Launch> findByMaturityDateBetween(Calendar firstDayMonthActual, Calendar lastDayMonthActual) {
+		return this.findByMaturityDateBetween(firstDayMonthActual, lastDayMonthActual);
+	}
+
 }

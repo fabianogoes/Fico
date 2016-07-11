@@ -82,6 +82,14 @@ public class Launch implements Serializable {
 		super();
 	}
 
+	public Launch(String description, BigDecimal amount, Calendar maturityDate, LaunchType type){
+		this.description = description;
+		this.amount = amount;
+		this.createdDate = Calendar.getInstance();
+		this.maturityDate = maturityDate;
+		this.type = type;
+	}
+	
 	public Launch(Long id, String description, Calendar createdDate, Calendar doneDate, Calendar maturityDate,
 			BigDecimal amount, Boolean done, LaunchType type, Category category) {
 		super();
@@ -236,7 +244,7 @@ public class Launch implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Launch [id=" + id + ", description=" + description + ", createdDate="
+		return "Launch [id=" + id + ", description=" + description + ", type=" + type + ", createdDate="
 				+ DateTimeHelper.toDate(createdDate) + ", doneDate=" + DateTimeHelper.toDate(doneDate)
 				+ ", maturityDate=" + DateTimeHelper.toDate(maturityDate) + ", amount=" + amount + ", done=" + done
 				+ ", bank=" + bank + ", category=" + category + "]";

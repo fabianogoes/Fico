@@ -1,5 +1,6 @@
 package br.com.fico.restcontrollers;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,14 @@ public class LaunchRestController {
 	@RequestMapping
 	public List<Launch> get() {
 		System.out.println("get( )");
-		return launchService.findAll();
+		
+		Calendar firstDayMonthActual = Calendar.getInstance();
+		firstDayMonthActual.set(Calendar.DAY_OF_MONTH, 1);
+		
+		Calendar lastDayMonthActual = Calendar.getInstance();
+		lastDayMonthActual.set(Calendar.DAY_OF_MONTH, lastDayMonthActual.getActualMaximum(Calendar.DAY_OF_MONTH));
+		
+		return launchService.findByMaturityDateBetween(firstDayMonthActual, lastDayMonthActual);
 	}
 
 	@RequestMapping(value="/type/{type}")
