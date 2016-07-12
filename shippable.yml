@@ -29,7 +29,8 @@ build:
     - ls -la
     - cp target/fico.war app/webapps/
     - cd app/
-    - git pull
+    #- git pull
+    - git pull --rebase origin master
     - git add .
     - git commit -am 'deploy by shippable ci'
     - git push origin master
