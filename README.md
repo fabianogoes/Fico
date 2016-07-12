@@ -16,12 +16,13 @@
 ### Database
 ```sql
 CREATE DATABASE fico CHARACTER SET utf8 COLLATE utf8_bin;
-```   
 
-1. Create Table Security    
-```sql
+use FIco;
+
 create table users (username varchar(50) not null primary key, password varchar(255) not null,    enabled boolean not null) engine = InnoDb;create table authorities (    username varchar(50) not null,    authority varchar(50) not null,    foreign key (username) references users (username),    unique index authorities_idx_1 (username, authority)) engine = InnoDb;
 ```   
+
+1. Run App   
 
 2. Populate Data Basic   
 ```sql
