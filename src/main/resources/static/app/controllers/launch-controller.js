@@ -14,7 +14,6 @@ mainApp.controller('LaunchController', ['BankService', 'CategoryService', 'Launc
 		self.getDonePerc();
 		self.getWaitingPerc();
 	};
-	
 	self.launch = {};
 	self.bank = {};
 	self.category = {};

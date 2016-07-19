@@ -29,7 +29,6 @@
 		</script>
   	</head>
 <body ng-controller="LaunchController as ctrl">
-
 	<!--/*/ <th:block th:include="fragments/header :: header"></th:block>  /*/-->
 
     <div class="container-fluid">
@@ -77,6 +76,7 @@
 							<th class="col-md-2 text-center">
 								<a href="#" 
 								   class="btn btn-sm btn-danger" 
+								   th:class="${module == 'payments' ? 'payments btn btn-sm' : 'receipts btn btn-sm' }"
 								   ng-click="ctrl.showLaunchFormModal('new')" 
 								   data-toggle="tooltip" data-placement="top" title="Cadastrar Novo Lançamento...">
 									<i class="fa fa-plus"></i>&nbsp;Novo
