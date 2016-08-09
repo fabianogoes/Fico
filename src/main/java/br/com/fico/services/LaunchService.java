@@ -58,7 +58,7 @@ public class LaunchService {
 	
 	public List<Launch> findByWaiting() {
 		Calendar dateNow = Calendar.getInstance();
-		return this.launchRepository.findByDoneFalseAndMaturityDateAfter(dateNow);
+		return this.launchRepository.findByDoneFalseAndMaturityDateGreaterThanEqual(dateNow);
 	}
 
 	public float getByLatePerc() {
@@ -89,6 +89,10 @@ public class LaunchService {
 			latePerc = (float)((waitingCount * 100) / allCount);
 		}
 		return latePerc;
+	}
+
+	public List<Launch> findByMaturityDateBetween(Calendar firstDayMonthActual, Calendar lastDayMonthActual) {
+		return this.findByMaturityDateBetween(firstDayMonthActual, lastDayMonthActual);
 	}
 
 }
