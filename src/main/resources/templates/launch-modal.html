@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body ng-controller="LaunchController as ctrl">
-
 	<div th:fragment="launch-modal">
 	
 		<!--/*/ <th:block th:include="launch-bank-modal :: launch-bank-modal"></th:block>  /*/-->
@@ -10,7 +9,8 @@
 		<div class="modal fade in bs-example-modal-lg" id="modalLaunch" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 		  <div class="modal-dialog modal-lg">
 		    <div class="modal-content">
-		      	<div class="modal-header text-center">
+		      	<div class="modal-header text-center" 
+		      	     th:class="${module == 'payments' ? 'payments modal-header text-center' : 'receipts modal-header text-center' }"> 
 		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        	<div th:if="${module == 'payments' }">
 		        		<h4 class="modal-title" id="myModalLabel" th:text="#{system.payments.name}">Pagamentos</h4>
@@ -118,7 +118,8 @@
 						<hr/>
 						<div class="row">
 							<div class="col-md-12">
-								<button type="submit" class="btn btn-danger">
+								<button type="submit" 
+								        th:class="${module == 'payments' ? 'payments btn' : 'receipts btn' }">
 									<i class="fa fa-floppy-o"></i>&nbsp;Salvar
 								</button>
 								<a href="#" class="btn btn-default pull-right" ng-click="ctrl.hideLaunchFormModal()">

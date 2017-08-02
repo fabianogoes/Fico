@@ -272,8 +272,16 @@ body{
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.payments{
   background-color: #DC564C;
-  color: #fff;
+  color: #fff;	
+}
+
+.receipts{
+  background-color: #4E6E00;
+  color: #fff;	
 }
 
 .modal-footer {
